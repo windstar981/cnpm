@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->string('name');
             $table->text('description');
+            $table->text('thumbnail')->nullable();
             $table->text('images')->nullable();
             $table->integer('price');
             $table->integer('price_voucher');

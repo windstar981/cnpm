@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Models\User;
+use AppMain\Product\Service\ProductService;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use AppMain\Product\Enum\ProductStatusEnum;
@@ -14,6 +16,7 @@ use AppMain\Product\Enum\ProductStatusEnum;
  */
 class ProductCrudController extends CrudController
 {
+
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
@@ -25,6 +28,8 @@ class ProductCrudController extends CrudController
      * 
      * @return void
      */
+    protected $productService;
+
     public function setup()
     {
         CRUD::setModel(\App\Models\Product::class);
@@ -42,9 +47,25 @@ class ProductCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('id');
-        CRUD::column('cate_id');
+        $this->crud->addColumn([
+            'name'    => 'thumbnail',
+            'label'   => 'Image',
+            'type'    => 'image ',
+            'disk' => 'public', // filesystem disk if you're using S3 or something custom
+            'height' => '60px',
+            'width'  => '60px',
+        ]);
         CRUD::column('name');
+        $this->crud->addColumn([
+            'name'    => 'category_id',
+            'label'   => 'Category',
+            'type'    => 'closure',
+            'function' => function($entry) {
+                return Category::findOrFail($entry->category_id)->name;
+            }
+        ]);
         CRUD::column('description');
+
         $this->crud->addColumn([
             'name'    => 'images',
             'label'   => 'Photos',
@@ -52,11 +73,18 @@ class ProductCrudController extends CrudController
             'disk' => 'public', // filesystem disk if you're using S3 or something custom
         ]);
         CRUD::column('price');
-        CRUD::column('price_voucher');
-        CRUD::column('attribute');
+//        CRUD::column('price_voucher');
+//        CRUD::column('attribute');
         CRUD::column('slug');
-        CRUD::column('published_at');
-        CRUD::column('status');
+//        CRUD::column('published_at');
+        $this->crud->addColumn([
+            'name'    => 'status',
+            'label'   => 'Status',
+            'type'    => 'closure',
+            'function' => function($entry) {
+                return ProductStatusEnum::$statusText[$entry->status];
+            }
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -164,6 +192,64 @@ class ProductCrudController extends CrudController
          */
     }
 
+    protected function setupShowOperation()
+    {
+
+        CRUD::column('id');
+        CRUD::column('name');
+        $this->crud->addColumn([
+            'name'    => 'thumbnail',
+            'label'   => 'Image',
+            'type'    => 'image ',
+            'disk' => 'public', // filesystem disk if you're using S3 or something custom
+            'height' => '60px',
+            'width'  => '60px',
+        ]);
+        $this->crud->addColumn([
+            'name'    => 'category_id',
+            'label'   => 'Category',
+            'type'    => 'closure',
+            'function' => function($entry) {
+                return Category::findOrFail($entry->category_id)->name;
+            }
+        ]);
+        CRUD::column('description');
+
+        $this->crud->addColumn([
+            'name'    => 'images',
+            'label'   => 'Photos',
+            'type'    => 'upload_multiple',
+            'disk' => 'public', // filesystem disk if you're using S3 or something custom
+        ]);
+        CRUD::column('price');
+        CRUD::column('price_voucher');
+//        CRUD::column('attribute');
+        $this->crud->addColumn([
+            'name'     => 'attribute',
+            'label'    => 'Attribute',
+            'type'     => 'closure',
+            'function' => function($entry) {
+                return 'Compositions: '.json_decode($entry->attribute)[0]->compositions.'</br>'
+                 .'Paper type: '.json_decode($entry->attribute)[0]->paper_type.'</br>'
+                 .'Color: '.json_decode($entry->attribute)[0]->color.'</br>'
+                 .'Size: '.json_decode($entry->attribute)[0]->size.'</br>'
+                 .'Frame Size: '.json_decode($entry->attribute)[0]->frame_size.'</br>';
+            }
+        ]);
+        CRUD::column('slug');
+        CRUD::column('published_at');
+        $this->crud->addColumn([
+            'name'    => 'status',
+            'label'   => 'Status',
+            'type'    => 'closure',
+            'function' => function($entry) {
+                return ProductStatusEnum::$statusText[$entry->status];
+            }
+        ]);
+
+    }
+
+
     /**
      * Define what happens when the Update operation is loaded.
      * 
@@ -177,12 +263,13 @@ class ProductCrudController extends CrudController
         // execute the FormRequest authorization and validation, if one is required
         $request = $this->crud->validateRequest();
         // insert item in the db
-        $name = $request->name ?? '';
+        $images = $request->images ?? null;
         $insert_data = $this->crud->getStrippedSaveRequest();
         $insert_data['user_id'] = backpack_auth()->user()->id;
-        $insert_data['slug'] =
+      //  $insert_data['thumbnail'] = json_decode($images, true)[0] ?? null;
         //        dd($insert_data);
         $item = $this->crud->create($insert_data);
+
         $this->data['entry'] = $this->crud->entry = $item;
 
         // show a success message
@@ -190,6 +277,9 @@ class ProductCrudController extends CrudController
 
         // save the redirect choice for next time
         $this->crud->setSaveAction();
+        $prodService = new ProductService;
+        $image = $item->images[0] ?? null;
+        $prodService->UpdateById($item->id, ['thumbnail'=>$image]);
 
         return $this->crud->performSaveAction($item->getKey());
     }
