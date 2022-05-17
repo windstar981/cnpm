@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 /*
@@ -17,3 +19,5 @@ Route::get('/', [HomeController::class, 'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('logout',  [LoginController::class, 'logout'])->name('customer.logout');
+Route::get('/product/{slug}',  [App\Http\Controllers\Product\ProductController::class, 'show']);

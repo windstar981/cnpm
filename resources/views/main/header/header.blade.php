@@ -65,10 +65,10 @@
             <ul>
                 <li><a href="#"><span class="menu-text">Home</span></a>
                     <ul class="offcanvas-submenu">
-                        <li><a href="index.html">Home 1</a></li>
-                        <li><a href="index-2.html">Home 2</a></li>
-                        <li><a href="index-3.html">Home 3</a></li>
-                        <li><a href="index-4.html">Home 4</a></li>
+{{--                        <li><a href="index.html">Home 1</a></li>--}}
+{{--                        <li><a href="index-2.html">Home 2</a></li>--}}
+{{--                        <li><a href="index-3.html">Home 3</a></li>--}}
+{{--                        <li><a href="index-4.html">Home 4</a></li>--}}
                     </ul>
 
                 </li>
@@ -77,27 +77,27 @@
                         <li>
                             <a href="#"><span class="menu-text">Shop Grid</span></a>
                             <ul class="offcanvas-submenu">
-                                <li><a href="shop-grid-3-column.html">Shop Grid 3 Column</a></li>
-                                <li><a href="shop-grid-4-column.html">Shop Grid 4 Column</a></li>
-                                <li><a href="shop-grid-left-sidebar.html">Shop Grid Left Sidebar</a></li>
-                                <li><a href="shop-grid-right-sidebar.html">Shop Grid Right Sidebar</a></li>
+{{--                                <li><a href="shop-grid-3-column.html">Shop Grid 3 Column</a></li>--}}
+{{--                                <li><a href="shop-grid-4-column.html">Shop Grid 4 Column</a></li>--}}
+{{--                                <li><a href="shop-grid-left-sidebar.html">Shop Grid Left Sidebar</a></li>--}}
+{{--                                <li><a href="shop-grid-right-sidebar.html">Shop Grid Right Sidebar</a></li>--}}
                             </ul>
                         </li>
                         <li>
                             <a href="#"><span class="menu-text">Shop List</span></a>
                             <ul class="offcanvas-submenu">
-                                <li><a href="shop-grid-list.html">Shop List</a></li>
-                                <li><a href="shop-grid-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                <li><a href="shop-grid-list-right-sidebar.html">Shop List Right Sidebar</a></li>
+{{--                                <li><a href="shop-grid-list.html">Shop List</a></li>--}}
+{{--                                <li><a href="shop-grid-list-left-sidebar.html">Shop List Left Sidebar</a></li>--}}
+{{--                                <li><a href="shop-grid-list-right-sidebar.html">Shop List Right Sidebar</a></li>--}}
                             </ul>
                         </li>
                         <li>
                             <a href="#"><span class="menu-text">Shop Single</span></a>
                             <ul class="offcanvas-submenu">
-                                <li><a href="single-product.html">Shop Single</a></li>
-                                <li><a href="single-product-configurable.html">Shop Variable</a></li>
-                                <li><a href="single-product-affiliate.html">Shop Affiliate</a></li>
-                                <li><a href="single-product-group.html">Shop Group</a></li>
+{{--                                <li><a href="single-product.html">Shop Single</a></li>--}}
+{{--                                <li><a href="single-product-configurable.html">Shop Variable</a></li>--}}
+{{--                                <li><a href="single-product-affiliate.html">Shop Affiliate</a></li>--}}
+{{--                                <li><a href="single-product-group.html">Shop Group</a></li>--}}
                             </ul>
                         </li>
                         <li>
@@ -274,48 +274,21 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-7 order-last order-md-first">
-                    <div class="static-info text-center text-md-left">
-                        <p class="text-white">Join our showroom and get <span class="theme-color">50 % off</span> !
-                            Coupon code : <span class="theme-color">Junno50</span></p>
-                    </div>
+{{--                    <div class="static-info text-center text-md-left">--}}
+{{--                        <p class="text-white">Join our showroom and get <span class="theme-color">50 % off</span> !--}}
+{{--                            Coupon code : <span class="theme-color">Junno50</span></p>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="col-lg-6 col-md-5">
                     <nav class="navbar-top pb-2 pb-md-0 position-relative">
                         <ul class="d-flex justify-content-center justify-content-md-end align-items-center">
-                            <li>
-                                <a href="#" id="dropdown1" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">Setting <i class="ion ion-ios-arrow-down"></i></a>
-                                <ul class="topnav-submenu dropdown-menu" aria-labelledby="dropdown1">
-                                    <li><a href="myaccount.html">My account</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="login.html">Sign out</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" id="dropdown2" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">USD $ <i class="ion ion-ios-arrow-down"></i> </a>
-                                <ul class="topnav-submenu dropdown-menu" aria-labelledby="dropdown2">
-                                    <li class="active"><a href="#">EUR €</a></li>
-                                    <li><a href="#">USD $</a></li>
-                                </ul>
-                            </li>
-                            <li class="english">
-                                <a href="#" id="dropdown3" class="pr-0" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    <img src="assets/img/logo/us-flag.jpg" alt="us flag"> English
-                                    <i class="ion ion-ios-arrow-down"></i>
-                                </a>
-                                <ul class="topnav-submenu dropdown-menu" aria-labelledby="dropdown3">
-                                    <li class="active">
-                                        <a href="#"><img src="assets/img/logo/us-flag.jpg" alt="us flag">
-                                            English</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="assets/img/logo/france.jpg" alt="france flag">
-                                            Français</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            @auth
+                            <li><a href="myaccount.html">My account</a></li>
+                                    <li><a href="{{route('customer.logout')}}">Log out</a></li>
+                            @else
+                                    <li><a href="{{route('login')}}">Login</a></li>
+                                    <li><a href="{{route('register')}}">Register</a></li>
+                            @endif
                         </ul>
                     </nav>
                 </div>
@@ -417,10 +390,10 @@
                         <li class="active ml-0">
                             <a href="#" class="pl-0">Home <i class="ion-ios-arrow-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a href="index.html">Home 1</a></li>
-                                <li><a href="index-2.html">Home 2</a></li>
-                                <li><a href="index-3.html">Home 3</a></li>
-                                <li><a href="index-4.html">Home 4</a></li>
+{{--                                <li><a href="index.html">Home 1</a></li>--}}
+{{--                                <li><a href="index-2.html">Home 2</a></li>--}}
+{{--                                <li><a href="index-3.html">Home 3</a></li>--}}
+{{--                                <li><a href="index-4.html">Home 4</a></li>--}}
                             </ul>
                         </li>
                         <li class="position-static">
@@ -428,92 +401,92 @@
                             <ul class="mega-menu row">
                                 <li class="col-3">
                                     <ul>
-                                        <li class="mega-menu-title"><a href="#">Shop Grid</a></li>
-                                        <li><a href="shop-grid-3-column.html">Shop Grid 3 Column</a></li>
-                                        <li><a href="shop-grid-4-column.html">Shop Grid 4 Column</a></li>
-                                        <li><a href="shop-grid-left-sidebar.html">Shop Grid Left Sidebar</a></li>
-                                        <li><a href="shop-grid-right-sidebar.html">Shop Grid Right Sidebar</a></li>
+{{--                                        <li class="mega-menu-title"><a href="#">Shop Grid</a></li>--}}
+{{--                                        <li><a href="shop-grid-3-column.html">Shop Grid 3 Column</a></li>--}}
+{{--                                        <li><a href="shop-grid-4-column.html">Shop Grid 4 Column</a></li>--}}
+{{--                                        <li><a href="shop-grid-left-sidebar.html">Shop Grid Left Sidebar</a></li>--}}
+{{--                                        <li><a href="shop-grid-right-sidebar.html">Shop Grid Right Sidebar</a></li>--}}
                                     </ul>
                                 </li>
                                 <li class="col-3">
                                     <ul>
-                                        <li class="mega-menu-title"><a href="#">Shop List</a></li>
-                                        <li><a href="shop-grid-list.html">Shop List</a></li>
-                                        <li><a href="shop-grid-list-left-sidebar.html">Shop List Left Sidebar</a>
-                                        </li>
-                                        <li><a href="shop-grid-list-right-sidebar.html">Shop List Right Sidebar</a>
-                                        </li>
+{{--                                        <li class="mega-menu-title"><a href="#">Shop List</a></li>--}}
+{{--                                        <li><a href="shop-grid-list.html">Shop List</a></li>--}}
+{{--                                        <li><a href="shop-grid-list-left-sidebar.html">Shop List Left Sidebar</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a href="shop-grid-list-right-sidebar.html">Shop List Right Sidebar</a>--}}
+{{--                                        </li>--}}
                                     </ul>
                                 </li>
                                 <li class="col-3">
                                     <ul>
-                                        <li class="mega-menu-title"><a href="#">Shop Single</a></li>
-                                        <li><a href="single-product.html">Shop Single</a></li>
-                                        <li><a href="single-product-configurable.html">Shop Variable</a></li>
-                                        <li><a href="single-product-affiliate.html">Shop Affiliate</a></li>
-                                        <li><a href="single-product-group.html">Shop Group</a></li>
+{{--                                        <li class="mega-menu-title"><a href="#">Shop Single</a></li>--}}
+{{--                                        <li><a href="single-product.html">Shop Single</a></li>--}}
+{{--                                        <li><a href="single-product-configurable.html">Shop Variable</a></li>--}}
+{{--                                        <li><a href="single-product-affiliate.html">Shop Affiliate</a></li>--}}
+{{--                                        <li><a href="single-product-group.html">Shop Group</a></li>--}}
                                     </ul>
                                 </li>
                                 <li class="col-3">
                                     <ul>
-                                        <li class="mega-menu-title"><a href="#">other pages</a></li>
-                                        <li><a href="about-us.html">About Page</a></li>
-                                        <li><a href="cart.html">Cart Page</a></li>
-                                        <li><a href="checkout.html">Checkout Page</a></li>
-                                        <li><a href="compare.html">Compare Page</a></li>
+{{--                                        <li class="mega-menu-title"><a href="#">other pages</a></li>--}}
+{{--                                        <li><a href="about-us.html">About Page</a></li>--}}
+{{--                                        <li><a href="cart.html">Cart Page</a></li>--}}
+{{--                                        <li><a href="checkout.html">Checkout Page</a></li>--}}
+{{--                                        <li><a href="compare.html">Compare Page</a></li>--}}
                                     </ul>
                                 </li>
-                                <li class="col-6 mt-4">
-                                    <a href="single-product.html" class="zoom-in overflow-hidden"><img
-                                                src="assets/img/mega-menu/1.jpg" alt="img"></a>
-                                </li>
-                                <li class="col-6 mt-4">
-                                    <a href="single-product.html" class="zoom-in overflow-hidden"><img
-                                                src="assets/img/mega-menu/2.jpg" alt="img"></a>
-                                </li>
+{{--                                <li class="col-6 mt-4">--}}
+{{--                                    <a href="single-product.html" class="zoom-in overflow-hidden"><img--}}
+{{--                                                src="assets/img/mega-menu/1.jpg" alt="img"></a>--}}
+{{--                                </li>--}}
+{{--                                <li class="col-6 mt-4">--}}
+{{--                                    <a href="single-product.html" class="zoom-in overflow-hidden"><img--}}
+{{--                                                src="assets/img/mega-menu/2.jpg" alt="img"></a>--}}
+{{--                                </li>--}}
                             </ul>
                         </li>
                         <li>
                             <a href="#">Pages <i class="ion-ios-arrow-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a href="about-us.html">About Page</a></li>
-                                <li><a href="cart.html">Cart Page</a></li>
-                                <li><a href="checkout.html">Checkout Page</a></li>
-                                <li><a href="compare.html">Compare Page</a></li>
-                                <li><a href="login.html">Login &amp; Register Page</a></li>
-                                <li><a href="myaccount.html">Account Page</a></li>
-                                <li><a href="wishlist.html">Wishlist Page</a></li>
+{{--                                <li><a href="about-us.html">About Page</a></li>--}}
+{{--                                <li><a href="cart.html">Cart Page</a></li>--}}
+{{--                                <li><a href="checkout.html">Checkout Page</a></li>--}}
+{{--                                <li><a href="compare.html">Compare Page</a></li>--}}
+{{--                                <li><a href="login.html">Login &amp; Register Page</a></li>--}}
+{{--                                <li><a href="myaccount.html">Account Page</a></li>--}}
+{{--                                <li><a href="wishlist.html">Wishlist Page</a></li>--}}
                             </ul>
                         </li>
                         <li>
                             <a href="#">Blog <i class="ion-ios-arrow-down"></i></a>
                             <ul class="sub-menu">
-                                <li>
-                                    <a href="#">Blog Grid</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-grid-3-column.html">Blog Grid 3 column</a></li>
-                                        <li><a href="blog-grid-4-column.html">Blog Grid 4 column</a></li>
-                                        <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
-                                        <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Blog List</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
-                                        <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Blog Single</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="single-blog.html">Single Blog</a></li>
-                                        <li><a href="blog-single-left-sidebar.html">Blog Single Left Sidebar</a>
-                                        </li>
-                                        <li><a href="blog-single-right-sidebar.html">Blog Single Right Sidbar</a>
-                                        </li>
-                                    </ul>
-                                </li>
+{{--                                <li>--}}
+{{--                                    <a href="#">Blog Grid</a>--}}
+{{--                                    <ul class="sub-menu">--}}
+{{--                                        <li><a href="blog-grid-3-column.html">Blog Grid 3 column</a></li>--}}
+{{--                                        <li><a href="blog-grid-4-column.html">Blog Grid 4 column</a></li>--}}
+{{--                                        <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>--}}
+{{--                                        <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Blog List</a>--}}
+{{--                                    <ul class="sub-menu">--}}
+{{--                                        <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>--}}
+{{--                                        <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Blog Single</a>--}}
+{{--                                    <ul class="sub-menu">--}}
+{{--                                        <li><a href="single-blog.html">Single Blog</a></li>--}}
+{{--                                        <li><a href="blog-single-left-sidebar.html">Blog Single Left Sidebar</a>--}}
+{{--                                        </li>--}}
+{{--                                        <li><a href="blog-single-right-sidebar.html">Blog Single Right Sidbar</a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
                             </ul>
                         </li>
                         <li><a href="contact.html">contact Us</a></li>
