@@ -11,4 +11,8 @@ class ProductService
     {
         $product = Product::where('id', $prod_id)->update($data);
     }
+
+    public static function getNewProduct(){
+        return DB::table('products')->orderByDesc('created_at')->get();
+    }
 }
