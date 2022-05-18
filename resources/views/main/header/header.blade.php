@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Junno – Multipurpose eCommerce HTML Template</title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
@@ -63,7 +64,7 @@
         </div>
         <nav class="offcanvas-menu">
             <ul>
-                <li><a href="#"><span class="menu-text">Home</span></a>
+                <li><a href="/home"><span class="menu-text">Home</span></a>
                     <ul class="offcanvas-submenu">
 {{--                        <li><a href="index.html">Home 1</a></li>--}}
 {{--                        <li><a href="index-2.html">Home 2</a></li>--}}
@@ -184,33 +185,21 @@
             <button class="offcanvas-close">×</button>
         </div>
         <ul class="minicart-product-list">
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/4.jpg"
-                                                                 alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Walnut Cutting Board</a>
-                    <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/5.jpg"
-                                                                 alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Lucky Wooden Elephant</a>
-                    <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/6.jpg"
-                                                                 alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Fish Cut Out Set</a>
-                    <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
+            @auth
+                @foreach($productCart as $key=> $product)
+                <li>
+                    <a href="single-product.html" class="image"><img src="{{asset('http://127.0.0.1:8000/storage/'.$product->thumbnail)}}"
+                                                                     alt="Cart product Image"></a>
+                    <div class="content">
+                        <a href="single-product.html" class="title">{{$product->name}}}</a>
+                        <span class="quantity-price">{{$carts[$key]->quantity}} x <span class="amount">{{$product->price-$product->price_voucher}}</span></span>
+                        <a href="#" class="remove">×</a>
+                    </div>
+                </li>
+                @endforeach
+            @else
+            @endif
+
         </ul>
         <a href="wishlist.html" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mt-30">view
             wishlist</a>
@@ -226,43 +215,31 @@
             <button class="offcanvas-close">×</button>
         </div>
         <ul class="minicart-product-list">
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/1.jpg"
-                                                                 alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Walnut Cutting Board</a>
-                    <span class="quantity-price">1 x <span class="amount">$100.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/2.jpg"
-                                                                 alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Lucky Wooden Elephant</a>
-                    <span class="quantity-price">1 x <span class="amount">$35.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
-            <li>
-                <a href="single-product.html" class="image"><img src="assets/img/product/3.jpg"
-                                                                 alt="Cart product Image"></a>
-                <div class="content">
-                    <a href="single-product.html" class="title">Fish Cut Out Set</a>
-                    <span class="quantity-price">1 x <span class="amount">$9.00</span></span>
-                    <a href="#" class="remove">×</a>
-                </div>
-            </li>
+            @auth
+            @foreach($productCart as $key => $product)
+                <li class="row-product-cart">
+                    <a href="single-product.html" class="image"><img src="{{asset('http://127.0.0.1:8000/storage/'.$product->thumbnail)}}"
+                                                                     alt="Cart product Image"></a>
+                    <div class="content">
+                        <a href="single-product.html" class="title">{{$product->name}}</a>
+                        <span class="quantity-price">{{$carts[$key]->quantity}} x <span class="amount">{{$product->price-$product->price_voucher}}</span></span>
+                        <a href="#" class="remove remove-cart" pr_id={{$carts[$key]->id}}>×</a>
+                    </div>
+                </li>
+            @endforeach
+                @else
+            @endif
         </ul>
-        <div class="sub-total d-flex flex-wrap justify-content-between">
-            <strong>Subtotal :</strong>
-            <span class="amount">$144.00</span>
+{{--        <div class="sub-total d-flex flex-wrap justify-content-between">--}}
+{{--            <strong>Subtotal :</strong>--}}
+{{--            <span class="amount">$144.00</span>--}}
+{{--        </div>--}}
+        <div class="mt-3">
+            <a href="/cart" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mr-sm-2">view
+                cart</a>
+            <a href="/checkout"
+               class="btn theme-btn--dark1 btn--lg d-block d-sm-inline-block mt-4 mt-sm-0 rounded-5">checkout</a>
         </div>
-        <a href="cart.html" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mr-sm-2">view
-            cart</a>
-        <a href="checkout.html"
-           class="btn theme-btn--dark1 btn--lg d-block d-sm-inline-block mt-4 mt-sm-0 rounded-5">checkout</a>
-        <p class="minicart-message">Free Shipping on All Orders Over $100!</p>
     </div>
 </div>
 <!-- OffCanvas Cart End -->
@@ -342,9 +319,8 @@
                                     <a class="offcanvas-toggle" href="#offcanvas-cart">
                                         <span class="position-relative">
                                             <i class="icon-bag"></i>
-                                            <span class="badge cbdg1">3</span>
+                                            <span class="badge cbdg1">{{sizeof($productCart)}}</span>
                                         </span>
-                                        <span class="cart-total position-relative">$90.00</span>
                                     </a>
                                 </li>
                                 <!-- cart block end -->

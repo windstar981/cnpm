@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use AppMain\Product\Service\ProductService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Models\Cart;
+use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +17,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //
         $customer_id = auth()->user()->id ?? null;
-        $categories = Category::all();
         $productCart = [];
         $carts = DB::table('carts')->where('customer_id', $customer_id)->get();
         foreach ($carts as $cart) {
             array_push($productCart, DB::table('products')->where('id', $cart->product_id)->first());
         }
-//        dd($productCart);
-        return view('main.pages.main', ['categories' => $categories, 'productCart' => $productCart, 'carts'=>$carts]);
+        $customer_id = auth()->user()->id ?? null;
+
+        if ($customer_id != null) {
+            return view('main.pages.cart', ['productCart' => $productCart, 'carts' => $carts]);
+        } else {
+            return redirect()->route('login');
+        }
 
     }
 
@@ -48,6 +53,26 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         //
+
+        $pr_id = $request->pr_id;
+        $customer_id = auth()->user()->id ?? null;
+        if ($customer_id == null) {
+            return 'login';
+        }
+        $product = Product::find($pr_id);
+        if ($product->number <= 0) {
+            return 'Sản phẩm đã hết hàng';
+        }
+        if (DB::table('carts')->where([['product_id', '=', $pr_id], ['customer_id', '=', $customer_id]])->count() != 0) {
+            return 'Sản phẩm đã có trong giỏ hàng';
+        } else {
+            $cart = new Cart();
+            $cart->customer_id = $customer_id;
+            $cart->product_id = $pr_id;
+            $cart->quantity = 1;
+            $cart->save();
+            return 'Đã thêm hàng thành công';
+        }
     }
 
     /**
@@ -82,6 +107,8 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $number = $request->number;
+        return $number;
     }
 
     /**
@@ -93,5 +120,6 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+        Cart::destroy($id);
     }
 }

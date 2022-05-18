@@ -100,18 +100,21 @@
                 <div class="col-12">
                     <nav class="product-tab-menu">
                         <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+                            <?php $i=0; ?>
+                            @foreach($categories as $category)
                             <li class="nav-item">
-                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-                                   role="tab" aria-controls="pills-home" aria-selected="true">New product</a>
+                                <a class="nav-link <?php if($i==0) echo 'active'; $i=1; ?>" id="pills-home-tab" data-toggle="pill" href="#pills-home-{{$category->id}}"
+                                   role="tab" aria-controls="pills-home-{{$category->id}}" aria-selected="true">{{$category->name}}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                                   role="tab" aria-controls="pills-profile" aria-selected="false">Camera & Photo</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
-                                   role="tab" aria-controls="pills-contact" aria-selected="false">Smart Electronics</a>
-                            </li>
+                            @endforeach
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"--}}
+{{--                                   role="tab" aria-controls="pills-profile" aria-selected="false">Camera & Photo</a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"--}}
+{{--                                   role="tab" aria-controls="pills-contact" aria-selected="false">Smart Electronics</a>--}}
+{{--                            </li>--}}
                         </ul>
                     </nav>
                 </div>
@@ -122,10 +125,13 @@
             <div class="col-12">
                 <div class="tab-content" id="pills-tabContent">
                     <!-- first tab-pane -->
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                    <?php $i=0;?>
+                @foreach($categories as $category)
+                    @foreach($category->product()->get() as $product)
+                        <div class="tab-pane fade show <?php if($i==0) echo 'active'; $i=1; ?>" id="pills-home-{{$category->id}}" role="tabpanel"
                          aria-labelledby="pills-home-tab">
                         <div class="product-slider-init slick-nav">
-                            @foreach($newProducts as $product)
+
                                 <div class="slider-item">
                                     <div class="card product-card">
                                         <div class="card-body p-0">
@@ -133,7 +139,7 @@
                                                 <div class="product-thumbnail position-relative">
                                                     <span class="badge badge-danger top-right">New</span>
                                                     <a href="single-product.html">
-                                                        <img class="first-img" src="http://127.0.0.1:8000/storage/{{$product->thumbnail}}"
+                                                        <img class="first-img" src="{{asset('http://127.0.0.1:8000/storage/'.$product->thumbnail)}}"
                                                             alt="thumbnail">
                                                     </a>
                                                     <!-- product links -->
@@ -159,9 +165,7 @@
                                                         </div>
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <h6 class="product-price">{{$product->price-$product->price}}</h6>
-                                                            <button class="pro-btn" data-toggle="modal"
-                                                                    data-target="#add-to-cart"><i
-                                                                        class="icon-basket"></i></button>
+                                                            <button class="pro-btn"><i class="icon-basket add-to-cart" id_pr="{{$product->id}}"></i></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,11 +174,14 @@
                                     </div>
                                 </div>
                             <!-- slider-item end -->
-                            @endforeach
-                        
+
                         </div>
                     </div>
-                    <!-- second tab-pane -->
+                    @endforeach
+                @endforeach
+
+
+                <!-- second tab-pane -->
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <div class="product-slider-init slick-nav">
                             <div class="slider-item">

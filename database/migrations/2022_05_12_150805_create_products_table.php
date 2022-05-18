@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->integer('user_id');
             $table->integer('category_id');
             $table->string('name');
+            $table->unsignedInteger('number');
+
             $table->text('description');
             $table->text('thumbnail')->nullable();
             $table->text('images')->nullable();
