@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
+@php
+    $urlRoot = \Request::root();
+    $productImages = json_decode($product->images);
+    $attr = json_decode($product->attribute);
+@endphp
 
 <!-- header start -->
 @include('main.header.header')
@@ -14,8 +17,8 @@
             <div class="col-12">
                 <ol class="breadcrumb bg-transparent m-0 p-0 align-items-center justify-content-center">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="shop-grid-3-column.html">Bags & Shoes</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Originals Windbreaker Winter Jacket</li>
+                    <li class="breadcrumb-item"><a href="shop-grid-3-column.html">Product</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$product->name}}</li>
                 </ol>
             </div>
         </div>
@@ -31,67 +34,32 @@
                     <span class="badge badge-danger top-right">New</span>
                 </div>
                 <div class="product-sync-init mb-20">
+                    @foreach($productImages as $image)
                     <div class="single-product">
                         <div class="product-thumb">
-                            <img src="assets/img/single-product/1.jpg" alt="product-thumb">
+                            <img src="{{$urlRoot .'/storage/'.$image}}" alt="product-thumb">
                         </div>
                     </div>
-                    <!-- single-product end -->
-                    <div class="single-product">
-                        <div class="product-thumb">
-                            <img src="assets/img/single-product/2.jpg" alt="product-thumb">
-                        </div>
-                    </div>
-                    <!-- single-product end -->
-                    <div class="single-product">
-                        <div class="product-thumb">
-                            <img src="assets/img/single-product/3.jpg" alt="product-thumb">
-                        </div>
-                    </div>
-                    <!-- single-product end -->
-                    <div class="single-product">
-                        <div class="product-thumb">
-                            <img src="assets/img/single-product/4.jpg" alt="product-thumb">
-                        </div>
-                    </div>
+                    @endforeach
                     <!-- single-product end -->
                 </div>
 
                 <div class="product-sync-nav single-product">
+                    @foreach($productImages as $image)
                     <div class="single-product">
                         <div class="product-thumb">
-                            <a href="javascript:void(0)"> <img src="assets/img/single-product/1.2x.jpg"
+                            <a href="javascript:void(0)"> <img src="{{$urlRoot .'/storage/'.$image}}"
                                                                alt="product-thumb"></a>
                         </div>
                     </div>
                     <!-- single-product end -->
-                    <div class="single-product">
-                        <div class="product-thumb">
-                            <a href="javascript:void(0)"> <img src="assets/img/single-product/2.2x.jpg"
-                                                               alt="product-thumb"></a>
-                        </div>
-                    </div>
-                    <!-- single-product end -->
-                    <div class="single-product">
-                        <div class="product-thumb">
-                            <a href="javascript:void(0)"><img src="assets/img/single-product/3.2x.jpg"
-                                                              alt="product-thumb"></a>
-                        </div>
-                    </div>
-                    <!-- single-product end -->
-                    <div class="single-product">
-                        <div class="product-thumb">
-                            <a href="javascript:void(0)"><img src="assets/img/single-product/4.2x.jpg"
-                                                              alt="product-thumb"></a>
-                        </div>
-                    </div>
-                    <!-- single-product end -->
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-6 mt-5 mt-md-0">
                 <div class="single-product-info">
                     <div class="single-product-head">
-                        <h2 class="title mb-20">Originals Windbreaker Winter Jacket</h2>
+                        <h2 class="title mb-20">{{$product->name}}</h2>
                         <div class="star-content mb-20">
                             <span class="star-on"><i class="ion-ios-star"></i> </span>
                             <span class="star-on"><i class="ion-ios-star"></i> </span>
@@ -106,42 +74,13 @@
                     </div>
                     <div class="product-body mb-40">
                         <div class="d-flex align-items-center mb-30">
-                            <h6 class="product-price mr-20"><del class="del">$23.90</del>
-                                <span class="onsale">$21.51</span></h6>
+                            <h6 class="product-price mr-20"><del class="del">{{$product->price}}VNĐ</del>
+                                <span class="onsale">{{$product->price -  $product->price_voucher }}</span></h6>
                             <span class="badge position-static bg-dark rounded-0">Save 10%</span>
                         </div>
-                        <p>Block out the haters with the fresh adidas® Originals Kaval Windbreaker Jacket.</p>
-                        <ul>
-                            <li>Part of the Kaval Collection.</li>
-                            <li>Regular fit is eased, but not sloppy, and perfect for any activity.</li>
-                            <li>Plain-woven jacket specifically constructed for freedom of movement.</li>
-                        </ul>
+                        <p>{{mb_substr($product->description, 0, 100)}}</p>
                     </div>
                     <div class="product-footer">
-                        <div class="d-flex">
-                            <div class="product-size mr-5">
-                                <h3 class="title">size</h3>
-                                <select>
-                                    <option value="0">S</option>
-                                    <option value="1">M</option>
-                                    <option value="2">L</option>
-                                    <option value="3">XL</option>
-                                </select>
-                            </div>
-                            <div class="check-box ml-5">
-                                <h4 class="title">color</h4>
-                                <div class="d-flex check-box-wrap-list">
-                                    <div class="filter-check-box color-white">
-                                        <input type="checkbox" id="test13">
-                                        <label for="test13"></label>
-                                    </div>
-                                    <div class="filter-check-box color-black">
-                                        <input type="checkbox" id="test14">
-                                        <label for="test14"></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="product-count style d-flex flex-column flex-sm-row mt-30 mb-20">
                             <div class="count d-flex">
                                 <input type="number" min="1" max="10" step="1" value="1">
@@ -159,7 +98,6 @@
                         </div>
                         <div class="addto-whish-list">
                             <a href="#"><i class="icon-heart"></i> Add to wishlist</a>
-                            <a href="#"><i class="icon-shuffle"></i> Add to compare</a>
                         </div>
                         <div class="pro-social-links mt-10">
                             <ul class="d-flex align-items-center">
@@ -210,78 +148,31 @@
                     <!-- first tab-pane -->
                     <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         <div class="single-product-desc">
-                            <ul>
-                                <li>
-                                    Block out the haters with the fresh adidas® Originals Kaval Windbreaker Jacket.
-                                </li>
-                                <li>
-                                    Part of the Kaval Collection.
-                                </li>
-                                <li>
-                                    Regular fit is eased, but not sloppy, and perfect for any activity.
-                                </li>
-                                <li>
-                                    Plain-woven jacket specifically constructed for freedom of movement.
-                                </li>
-                                <li>
-                                    Soft fleece lining delivers lightweight warmth.
-                                </li>
-                                <li>
-                                    Attached drawstring hood.
-                                </li>
-                                <li>
-                                    Full-length zip closure.
-                                </li>
-                                <li>
-                                    Long sleeves with stretch cuffs.
-                                </li>
-                                <li>
-                                    Side hand pockets.
-                                </li>
-                                <li>
-                                    Brand graphics at left chest and back.
-                                </li>
-                                <li>
-                                    Straight hem.
-                                </li>
-                                <li>
-                                    Shell: 100% nylon;<br>Lining: 100% polyester.
-                                </li>
-                                <li>
-                                    Machine wash, tumble dry.
-                                </li>
-                                <li>
-                                    Imported.
-                                </li>
-                                <li>
-                                    <div>Product measurements were taken using size MD. Please note that
-                                        measurements may vary by size.</div>
-                                </li>
-                            </ul>
+                            {!! nl2br($product->description) !!}
                         </div>
                     </div>
                     <!-- second tab-pane -->
                     <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
                          aria-labelledby="pills-profile-tab">
                         <div class="single-product-desc">
-                            <div class="studio-thumb">
-                                <a href="#"><img class="mb-30" src="assets/img/stodio.jpg" alt="studio-thumb"></a>
-                                <h6 class="mb-2">Reference <small>demo_1</small> </h6>
-                                <h6>In stock <small>300 Items</small> </h6>
-                                <h3>Data sheet</h3>
-                            </div>
                             <div class="product-features">
                                 <ul>
-                                    <li><span>Compositions</span></li>
-                                    <li><span>Cotton</span></li>
-                                    <li><span>Paper Type</span></li>
-                                    <li><span>Doted</span></li>
-                                    <li><span>Color</span></li>
-                                    <li><span>Black</span></li>
-                                    <li><span>Size</span></li>
-                                    <li><span>L</span></li>
-                                    <li><span>Frame Size</span></li>
-                                    <li><span>40x60cm</span></li>
+                                    @if(isset($attr['brand']) and !empty($attr['brand']))
+                                    <li><span>Thương hiệu</span></li>
+                                    <li><span>{{$attr['brand']}}</span></li>
+                                    @endif
+                                    @if(isset($attr['origin']) and !empty($attr['origin']))
+                                        <li><span>Xuất sứ</span></li>
+                                        <li><span>{{$attr['origin']}}</span></li>
+                                        @endif
+                                        @if(isset($attr['odor']) and !empty($attr['odor']))
+                                        <li><span>Mùi hương</span></li>
+                                        <li><span>{{$attr['odor']}}</span></li>
+                                            @endif
+                                        @if(isset($attr['capacity']) and !empty($attr['capacity']))
+                                            <li><span>Dung tích</span></li>
+                                            <li><span>{{$attr['capacity']}}</span></li>
+                                        @endif
                                 </ul>
                             </div>
                         </div>

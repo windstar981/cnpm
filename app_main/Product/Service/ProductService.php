@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
     {
         $product = Product::where('id', $prod_id)->update($data);
     }
-
     public static function getNewProduct(){
         return DB::table('products')->orderByDesc('created_at')->get();
     }
@@ -26,5 +25,10 @@ use Illuminate\Support\Facades\DB;
             array_push($productCart, DB::table('products')->where('id', $cart->product_id)->first());
         }
         return $productCart;
+    }
+    public function findBySlug($slug)
+    {
+        $product = DB::table('products')->where('slug', $slug)->first();
+        return $product;
     }
 }

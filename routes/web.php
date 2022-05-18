@@ -20,10 +20,17 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('logout',  [LoginController::class, 'logout'])->name('customer.logout');
-Route::get('/product/{slug}',  [App\Http\Controllers\Product\ProductController::class, 'show']);
 Route::prefix('cart')->group(function () {
     Route::get('/', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
     Route::post('/addToCart',[App\Http\Controllers\CartController::class, 'store'])->name('addToCart');
     Route::delete('/deleteCart/{id}',[App\Http\Controllers\CartController::class, 'destroy'])->name('deleteFromCart');
     Route::get('/updateCart/{id}',[App\Http\Controllers\CartController::class, 'update'])->name('updateCart');
 });
+
+Route::group([
+    'namespace' => 'App\Http\Controllers\Product',
+    'prefix'    => '/product',
+], function () {
+    Route::get('/{slug}', 'ProductDetailController@index')->name('get.product.detail');
+}
+);
