@@ -39,9 +39,29 @@ class CategoryCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        $this->addFilters();
+        $this->crud->addColumn([
+            'name'      => 'id',
+            'label'     => 'Mã danh mục',
+            'type'      => 'text',
+        ]);
+        $this->crud->addColumn([
+            'name'      => 'name',
+            'label'     => 'Tên danh mục',
+            'type'      => 'text',
+        ]);
+        $this->crud->addColumn([
+            'name'      => 'created_at',
+            'label'     => 'Ngày tạo',
+            'type'      => 'date',
+            'format' => 'd/m/Y'
+        ]);
+        $this->crud->addColumn([
+            'name'      => 'updated_at',
+            'label'     => 'Cập nhật lần cuối',
+            'type'      => 'date',
+            'format' => 'd/m/Y'
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -60,7 +80,11 @@ class CategoryCrudController extends CrudController
     {
         CRUD::setValidation(CategoryRequest::class);
 
-        CRUD::field('name');
+        $this->crud->addField([
+            'name'      => 'name',
+            'label'     => 'Tên sản phẩm',
+            'type'      => 'text',
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -79,4 +103,25 @@ class CategoryCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
+    }
+    public function addFilters()
+    {
+        $this->crud->addFilter([
+            'type'  => 'text',
+            'name'  => 'id',
+            'label' => 'ID'
+        ]);
+        $this->crud->addFilter([
+            'type'  => 'text',
+            'name'  => 'name',
+            'label' => 'Tên danh mục',
+        ],
+            false,
+            function($value) { // if the filter is active
+                $this->crud->addClause('where', 'description', 'LIKE', "%$value%");
+            });
+        }
 }

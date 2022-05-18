@@ -5,7 +5,7 @@ namespace AppMain\Product\Service;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
-class ProductService
+    class ProductService
 {
     public function UpdateById($prod_id, $data=[])
     {

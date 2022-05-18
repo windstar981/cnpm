@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
-<body>
-
+@php
+$urlRoot   = \Request::root();
+@endphp
 
 <!-- header end -->
 @include('main.header.header')
@@ -11,7 +8,7 @@
 <!-- main slider start -->
 <section class="bg-light position-relative">
     <div class="main-slider dots-style theme3">
-        <div class="slider-item bg-img bg-img7">
+        <div class="slider-item bg-img bg-img7" style="background-image: url({{asset('assets/img/banner/slide7.webp')}})">
             <div class="container">
                 <div class="row align-items-center slider-height">
                     <div class="col-12">
@@ -31,7 +28,7 @@
             </div>
         </div>
         <!-- slider-item end -->
-        <div class="slider-item bg-img bg-img8">
+        <div class="slider-item bg-img bg-img8" style="background-image: url({{asset('assets/img/banner/slide8.webp')}})">
             <div class="container">
                 <div class="row align-items-center slider-height">
                     <div class="col-12">
@@ -66,19 +63,19 @@
             <div class="col-md-6 mb-30">
                 <div class="banner-thumb">
                     <a href="shop-grid-4-column.html" class="zoom-in d-block overflow-hidden">
-                        <img src="assets/img/banner/19.jpg" alt="banner-thumb-naile">
+                        <img src="{{asset('assets/img/banner/30.jpg')}}" alt="banner-thumb-naile">
                     </a>
                 </div>
             </div>
             <div class="col-md-6 mb-30">
                 <div class="banner-thumb mb-30">
                     <a href="shop-grid-4-column.html" class="zoom-in d-block overflow-hidden">
-                        <img src="assets/img/banner/20.jpg" alt="banner-thumb-naile">
+                        <img src="{{asset('assets/img/banner/31.jpg')}}" alt="banner-thumb-naile">
                     </a>
                 </div>
                 <div class="banner-thumb">
                     <a href="shop-grid-4-column.html" class="zoom-in d-block overflow-hidden">
-                        <img src="assets/img/banner/21.jpg" alt="banner-thumb-naile">
+                        <img src="{{asset('assets/img/banner/32.jpg')}}" alt="banner-thumb-naile">
                     </a>
                 </div>
             </div>
@@ -131,7 +128,6 @@
                         <div class="tab-pane fade show <?php if($i==0) echo 'active'; $i=1; ?>" id="pills-home-{{$category->id}}" role="tabpanel"
                          aria-labelledby="pills-home-tab">
                         <div class="product-slider-init slick-nav">
-
                                 <div class="slider-item">
                                     <div class="card product-card">
                                         <div class="card-body p-0">
@@ -139,7 +135,7 @@
                                                 <div class="product-thumbnail position-relative">
                                                     <span class="badge badge-danger top-right">New</span>
                                                     <a href="single-product.html">
-                                                        <img class="first-img" src="{{asset('http://127.0.0.1:8000/storage/'.$product->thumbnail)}}"
+                                                        <img class="first-img" src="{{asset($urlRoot.'/storage/'.$product->thumbnail)}}"
                                                             alt="thumbnail">
                                                     </a>
                                                     <!-- product links -->
