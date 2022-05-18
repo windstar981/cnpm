@@ -19,14 +19,9 @@ class HomeController extends Controller
     {
         $customer_id = auth()->user()->id ?? null;
         $categories = Category::all();
-        $productCart = [];
-        $carts = DB::table('carts')->where('customer_id', $customer_id)->get();
-        foreach ($carts as $cart) {
-            array_push($productCart, DB::table('products')->where('id', $cart->product_id)->first());
-        }
-//        dd($productCart);
+        $carts = ProductService::getCart($customer_id);
+        $productCart = ProductService::getProductCart($carts);
         return view('main.pages.main', ['categories' => $categories, 'productCart' => $productCart, 'carts'=>$carts]);
-
     }
 
     /**

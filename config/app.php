@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'domain' => 'http://127.0.0.1:8000/',
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*

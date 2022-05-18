@@ -15,4 +15,16 @@ use Illuminate\Support\Facades\DB;
     public static function getNewProduct(){
         return DB::table('products')->orderByDesc('created_at')->get();
     }
+
+    public static  function getCart($customer_id){
+        return DB::table('carts')->where('customer_id', $customer_id)->get();
+    }
+
+    public static  function getProductCart($carts){
+        $productCart = [];
+        foreach ($carts as $cart) {
+            array_push($productCart, DB::table('products')->where('id', $cart->product_id)->first());
+        }
+        return $productCart;
+    }
 }
