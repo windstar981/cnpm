@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -186,6 +189,8 @@
         </div>
         <ul class="minicart-product-list">
             @auth
+                @isset($productCart)
+
                 @foreach($productCart as $key=> $product)
                 <li>
                     <a href="single-product.html" class="image"><img src="{{asset('http://127.0.0.1:8000/storage/'.$product->thumbnail)}}"
@@ -197,7 +202,7 @@
                     </div>
                 </li>
                 @endforeach
-            @else
+            @endisset
             @endif
 
         </ul>
@@ -216,6 +221,7 @@
         </div>
         <ul class="minicart-product-list">
             @auth
+                @isset($productCart)
             @foreach($productCart as $key => $product)
                 <li class="row-product-cart">
                     <a href="single-product.html" class="image"><img src="{{asset('http://127.0.0.1:8000/storage/'.$product->thumbnail)}}"
@@ -227,7 +233,7 @@
                     </div>
                 </li>
             @endforeach
-                @else
+                @endisset
             @endif
         </ul>
 {{--        <div class="sub-total d-flex flex-wrap justify-content-between">--}}
@@ -319,7 +325,7 @@
                                     <a class="offcanvas-toggle" href="#offcanvas-cart">
                                         <span class="position-relative">
                                             <i class="icon-bag"></i>
-                                            <span class="badge cbdg1">{{sizeof($productCart)}}</span>
+                                            <span class="badge cbdg1">{{sizeof($productCart ?? [] ) }}</span>
                                         </span>
                                     </a>
                                 </li>

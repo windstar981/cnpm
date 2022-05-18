@@ -11,8 +11,15 @@ use Illuminate\Support\Facades\DB;
     {
         $product = Product::where('id', $prod_id)->update($data);
     }
-
     public static function getNewProduct(){
         return DB::table('products')->orderByDesc('created_at')->get();
     }
+
+
+    public function findBySlug($slug)
+    {
+        $product = DB::table('products')->where('slug', $slug)->first();
+        return $product;
+    }
+
 }

@@ -27,3 +27,11 @@ Route::prefix('cart')->group(function () {
     Route::delete('/deleteCart/{id}',[App\Http\Controllers\CartController::class, 'destroy'])->name('deleteFromCart');
     Route::get('/updateCart/{id}',[App\Http\Controllers\CartController::class, 'update'])->name('updateCart');
 });
+
+Route::group([
+    'namespace' => 'App\Http\Controllers\Product',
+    'prefix'    => '/product',
+], function () {
+    Route::get('/{slug}', 'ProductDetailController@index')->name('get.product.detail');
+}
+);
