@@ -15,10 +15,15 @@ class ProductDetailController extends Controller
     }
 
     public function index(Request $request){
+        $customer_id = auth()->user()->id ?? null;
         $slug = $request->slug ?? null;
         $product = $this->productSerivce->findBySlug($slug);
+        $carts =  ProductService::getCart($customer_id);
+        $productCart = ProductService::getProductCart($carts);
         $viewData = [
-          "product" => $product
+          "product" => $product,
+          "carts" => $carts,
+          "productCart" => $productCart,
         ];
         return view('main.pages.product_detail')->with($viewData);
     }

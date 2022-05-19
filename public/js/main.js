@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    let domain = 'http://127.0.0.1:8000/';
     $(function() {
         $.ajaxSetup({
             headers: {
@@ -10,7 +11,7 @@ $(document).ready(function() {
     $('.add-to-cart').click(function() {
         let pr_id = $(this).attr('id_pr');
         $.ajax({
-            url: "http://127.0.0.1:8000/cart/addToCart",
+            url: domain+"cart/addToCart",
             type: "post",
             data: {
                 'pr_id': pr_id,
@@ -18,7 +19,7 @@ $(document).ready(function() {
             success: function(data) {
                 if(data=='login')
                 {
-                    window.location.href = 'http://127.0.0.1:8000/login';
+                    window.location.href = domain+'login';
                 }
                 alert(data);
             },
@@ -27,7 +28,7 @@ $(document).ready(function() {
     $('.remove-cart').on('click', function(){
         let pr_id = $(this).attr('pr_id');
         $.ajax({
-            url: "http://127.0.0.1:8000/cart/deleteCart/"+pr_id,
+            url: domain+"cart/deleteCart/"+pr_id,
             type: "delete",
             success: function(data) {
             },
@@ -52,7 +53,7 @@ $(document).ready(function() {
     $('.remove-product-cart').click(function(){
         let cart_id = $(this).attr('cart_id');
         $.ajax({
-            url: "http://127.0.0.1:8000/cart/deleteCart/"+cart_id,
+            url: domain+"cart/deleteCart/"+cart_id,
             type: "delete",
             success: function(data) {
             },
