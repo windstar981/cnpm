@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+
 
 class ProductRequest extends FormRequest
 {
@@ -27,9 +29,10 @@ class ProductRequest extends FormRequest
         return [
             // 'name' => 'required|min:5|max:255'
                  'name' => 'required|min:5|max:255',
-                 'number' => 'required|numeric',
+                 'number' => 'required|numeric|min:0',
                  'description' => 'required',
-                 'price' => 'required|numeric|nullable',
+                 'price' => 'required|numeric|min:1',
+                    'price_voucher' => 'numeric|min:1|nullable',
                  'images.*' => 'nullable|image',
         ];
     }

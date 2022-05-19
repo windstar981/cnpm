@@ -9,6 +9,9 @@ use AppMain\Product\Service\ProductService;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use AppMain\Product\Enum\ProductStatusEnum;
+use Backpack\CRUD\app\Library\CrudPanel\Traits\Validation;
+use Illuminate\Validation\Validator;
+
 /**
  * Class ProductCrudController
  * @package App\Http\Controllers\Admin
@@ -388,6 +391,12 @@ class ProductCrudController extends CrudController
 
         // execute the FormRequest authorization and validation, if one is required
         $request = $this->crud->validateRequest();
+        $price = $request->price??0;
+        $priceVoucher = $request->price_voucher??0;
+        if ($price < $priceVoucher){
+            \Alert::warning('Số tiền giảm giá không lớn hơn giá của sản phẩm')->flash();
+            return redirect('/admin/product/create');
+        }
         // insert item in the db
         $images = $request->images ?? null;
         $insert_data = $this->crud->getStrippedSaveRequest();
@@ -418,8 +427,15 @@ class ProductCrudController extends CrudController
         $request = $this->crud->validateRequest();
         // insert item in the db
         $images = $request->images ?? null;
+        $price = $request->price??0;
+        $priceVoucher = $request->price_voucher??0;
+        if ($price < $priceVoucher){
+            \Alert::warning('Số tiền giảm giá không lớn hơn giá của sản phẩm')->flash();
+            return redirect('/admin/product');
+        }
         $insert_data = $this->crud->getStrippedSaveRequest();
         $insert_data['user_id'] = backpack_auth()->user()->id;
+
         //  $insert_data['thumbnail'] = json_decode($images, true)[0] ?? null;
         //        dd($insert_data);
         $item = $this->crud->update($request->id,$insert_data);

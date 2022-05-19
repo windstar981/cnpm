@@ -19,15 +19,13 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->string('name');
             $table->unsignedInteger('number');
-
             $table->text('description');
             $table->text('thumbnail')->nullable();
             $table->text('images')->nullable();
             $table->integer('price');
-            $table->integer('price_voucher');
+            $table->integer('price_voucher')->nullable();
             $table->text('attribute');
             $table->string('slug');
-            $table->dateTime('published_at')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

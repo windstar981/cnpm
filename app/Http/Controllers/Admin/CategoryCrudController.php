@@ -51,6 +51,14 @@ class CategoryCrudController extends CrudController
             'type'      => 'text',
         ]);
         $this->crud->addColumn([
+            'name'    => 'image',
+            'label'   => 'Hình ảnh',
+            'type'    => 'image ',
+            'disk' => 'public', // filesystem disk if you're using S3 or something custom
+            'height' => '60px',
+            'width'  => '60px',
+        ]);
+        $this->crud->addColumn([
             'name'      => 'created_at',
             'label'     => 'Ngày tạo',
             'type'      => 'date',
@@ -85,7 +93,15 @@ class CategoryCrudController extends CrudController
             'label'     => 'Tên sản phẩm',
             'type'      => 'text',
         ]);
-
+        $this->crud->addField([
+            'label' => "Hình ảnh",
+            'name' => "image",
+            'type' => 'image',
+            'crop' => false, // set to true to allow cropping, false to disable
+            'aspect_ratio' => 1, // omit or set to 0 to allow any aspect ratio
+            // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
+            // 'prefix'    => 'uploads/images/profile_pictures/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
