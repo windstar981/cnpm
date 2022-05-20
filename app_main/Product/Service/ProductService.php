@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\DB;
         }
         return $productCart;
     }
+
     public function findBySlug($slug)
     {
         $product = DB::table('products')->where('slug', $slug)->first();
