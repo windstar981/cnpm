@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Junno – Multipurpose eCommerce HTML Template</title>
+    <title>Website bán mỹ phẩm</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}" />
 
     <!--**********************************
         all css files
@@ -285,14 +285,14 @@
             <div class="row align-items-center">
                 <div class="col-sm-6 col-lg-2 order-first">
                     <div class="logo text-center text-sm-left mb-30 mb-sm-0">
-                        <a href="index.html"><img src="assets/img/logo/logo-dark.jpg" alt="logo"></a>
+                        <a href="index.html"><img src="{{asset('assets/img/logo/logo-dark.jpg')}}" alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-5 col-xl-4">
                     <!-- search-form end -->
                     <div class="d-flex align-items-center justify-content-center justify-content-sm-end">
                         <div class="media static-media mr-50 d-none d-lg-flex">
-                            <img class="mr-3 align-self-center" src="assets/img/icon/1.png" alt="icon">
+                            <img class="mr-3 align-self-center" src="{{asset('assets/img/icon/1.png')}}" alt="icon">
                             <div class="media-body">
                                 <div class="phone">
                                     <span class="text-muted">Call us:</span>

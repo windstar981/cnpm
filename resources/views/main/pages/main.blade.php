@@ -133,7 +133,7 @@ $urlRoot   = \Request::root();
                                     </div>
                                     <div class="media-body">
                                         <div class="product-desc">
-                                            <h3 class="title"><a href="shop-grid-4-column.html">{{$product->name}}</a></h3>
+                                            <h3 class="title"><a href="/product/{{$product->slug}}">{{$product->name}}</a></h3>
                                             <div class="star-rating">
                                                 <span class="ion-ios-star"></span>
                                                 <span class="ion-ios-star"></span>
@@ -167,8 +167,8 @@ $urlRoot   = \Request::root();
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-30">
-                    <h2 class="title text-dark text-capitalize">Popular Categories</h2>
-                    <p class="text mt-10">Some of our popular categories include cosmetic
+                    <h2 class="title text-dark text-capitalize">Danh mục phổ biến</h2>
+                    <p class="text mt-10">Một số danh mục phổ biến của chúng tôi
                     </p>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VoucherRequest extends FormRequest
@@ -24,8 +25,12 @@ class VoucherRequest extends FormRequest
      */
     public function rules()
     {
+        $now = Carbon::now();
         return [
-            // 'name' => 'required|min:5|max:255'
+             'name' => 'required|min:5|max:255',
+            'number' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:1'
+
         ];
     }
 

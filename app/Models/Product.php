@@ -22,7 +22,7 @@ class Product extends Model
         $attribute_name = "images";
         $attributeNameSub = "thumbnail";
         $disk = "public";
-        $destination_path = "folder_1/subfolder_1";
+        $destination_path = "product/detail";
         $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
 
     }
