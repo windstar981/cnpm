@@ -45,6 +45,5 @@ class Product extends Model
 
     public function rate(){
         return $this->hasMany('App\Models\Rate', 'product_id');
-
     }
 }

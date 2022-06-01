@@ -8,45 +8,28 @@ $urlRoot   = \Request::root();
 <!-- main slider start -->
 <section class="bg-light position-relative">
     <div class="main-slider dots-style theme3">
-        <div class="slider-item bg-img bg-img7" style="background-image: url({{asset('assets/img/banner/slide7.webp')}})">
+        @foreach($banners as $banner)
+        <div class="slider-item bg-img bg-img7" style="background-image: url({{$urlRoot.'/storage/'.($banner->image)}})">
             <div class="container">
                 <div class="row align-items-center slider-height">
                     <div class="col-12">
                         <div class="slider-content d-inline-block text-center">
                             <p class="text text-lighten text-uppercase animated mb-25" data-animation-in="fadeInDown">
-                                100% Natural Skincare</p>
+                                {{$banner->title_small}}</p>
                             <h4 class="title text-dark animated text-capitalize mb-25" data-animation-in="fadeInLeft"
-                                data-delay-in="1">Emerald Deep</h4>
+                                data-delay-in="1">  {{$banner->title_medium}}</h4>
                             <h2 class="sub-title text-dark animated" data-animation-in="fadeInRight" data-delay-in="2">
-                                Moisture Glow Oil</h2>
-                            <a href="shop-grid-4-column.html"
+                                {{$banner->title_large}}</h2>
+                            <a href="#"
                                class="btn theme--btn3 btn--lg text-uppercase rounded-5 animated mt-45 mt-sm-25"
-                               data-animation-in="zoomIn" data-delay-in="3">Shop now</a>
+                               data-animation-in="zoomIn" data-delay-in="3">Mua ngay</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @endforeach
         <!-- slider-item end -->
-        <div class="slider-item bg-img bg-img8" style="background-image: url({{asset('assets/img/banner/slide8.webp')}})">
-            <div class="container">
-                <div class="row align-items-center slider-height">
-                    <div class="col-12">
-                        <div class="slider-content d-inline-block text-center">
-                            <p class="text text-lighten text-uppercase animated mb-25" data-animation-in="fadeInLeft">
-                                Organic Skin care</p>
-                            <h4 class="title text-dark animated text-capitalize mb-25" data-animation-in="fadeInRight"
-                                data-delay-in="1">Perfect Summer</h4>
-                            <h2 class="sub-title text-dark animated" data-animation-in="fadeInUp" data-delay-in="2">Skin
-                                Care Solution</h2>
-                            <a href="shop-grid-4-column.html"
-                               class="btn theme--btn3 btn--lg text-uppercase rounded-5 animated mt-45 mt-sm-25"
-                               data-animation-in="zoomIn" data-delay-in="3">Skin Care Solution</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- slider-item end -->
     </div>
     <!-- slick-progress -->

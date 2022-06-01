@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use AppMain\Product\Service\ProductService;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +20,10 @@ class HomeController extends Controller
     {
         $customer_id = auth()->user()->id ?? null;
         $categories = Category::all();
+        $banners = Banner::all();
         $carts = ProductService::getCart($customer_id);
         $productCart = ProductService::getProductCart($carts);
-        return view('main.pages.main', ['categories' => $categories, 'productCart' => $productCart, 'carts'=>$carts]);
+        return view('main.pages.main', ['categories' => $categories, 'productCart' => $productCart, 'carts'=>$carts, 'banners'=>$banners]);
     }
 
     /**

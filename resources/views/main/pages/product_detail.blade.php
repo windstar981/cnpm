@@ -196,8 +196,12 @@
 
                             </div>
                             @endforeach
+                            @if(auth()->user())
                                 <a href="#" class="btn theme-btn--dark3 theme-btn--dark3-sm btn--sm rounded-5 mt-15"
-                                   data-toggle="modal" data-target="#exampleModalCenter">Write your review !</a>
+                                   data-toggle="modal" data-target="#exampleModalCenter">Viết đánh giá của bạn !</a>
+                                @else
+                                    <a href="{{route('login')}}" class="btn theme-btn--dark3 theme-btn--dark3-sm btn--sm rounded-5 mt-20">Đăng nhập để viết đánh giá</a>
+                            @endif
                         </div>
                     </div>
                 </div>
