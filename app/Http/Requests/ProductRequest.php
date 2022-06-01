@@ -32,7 +32,7 @@ class ProductRequest extends FormRequest
                  'number' => 'required|numeric|min:0',
                  'description' => 'required',
                  'price' => 'required|numeric|min:1',
-                    'price_voucher' => 'numeric|min:1|nullable',
+                 'price_voucher' => 'numeric|min:1|nullable',
                  'images.*' => 'nullable|image',
         ];
     }

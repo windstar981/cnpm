@@ -18,12 +18,17 @@ class ProductDetailController extends Controller
         $customer_id = auth()->user()->id ?? null;
         $slug = $request->slug ?? null;
         $product = $this->productSerivce->findBySlug($slug);
+        if ($product===null){
+            abort(404);
+        }
         $carts =  ProductService::getCart($customer_id);
         $productCart = ProductService::getProductCart($carts);
+        $sameProduct =$this->productSerivce->getSameProduct($product->category_id);
         $viewData = [
           "product" => $product,
           "carts" => $carts,
           "productCart" => $productCart,
+            "sameProduct" => $sameProduct,
         ];
         return view('main.pages.product_detail')->with($viewData);
     }

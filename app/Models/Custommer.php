@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Custommer extends Model
 {
     use CrudTrait;
-
+    use Notifiable;
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES

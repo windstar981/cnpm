@@ -7,7 +7,7 @@
                     <div class="footer-widget mx-w-400">
                         <div class="footer-logo mb-35">
                             <a href="index.html">
-                                <img src="assets/img/logo/logo-dark.jpg" alt="footer logo">
+                                <img src="{{asset('assets/img/logo/logo-dark.jpg')}}" alt="footer logo">
                             </a>
                         </div>
                         <p class="text mb-30">We are a team of designers and developers that create high quality
@@ -15,7 +15,7 @@
                         <div class="address-widget mb-30">
                             <div class="media">
                                 <span class="address-icon mr-3">
-                                    <img src="assets/img/icon/phone.png" alt="phone">
+                                    <img src="{{asset('assets/img/icon/phone.png')}}" alt="phone">
                                 </span>
                                 <div class="media-body">
                                     <p class="help-text text-uppercase">NEED HELP?</p>
@@ -101,9 +101,9 @@
 
                         <div class="store d-flex">
                             <a href="https://www.apple.com/" class="d-inline-block mr-3"><img
-                                        src="assets/img/icon/apple.png" alt="apple icon"> </a>
+                                        src="{{asset('assets/img/icon/apple.png')}}" alt="apple icon"> </a>
                             <a href="https://play.google.com/store/" class="d-inline-block"><img
-                                        src="assets/img/icon/play.png" alt="apple icon"> </a>
+                                        src="{{asset('assets/img/icon/play.png')}}" alt="apple icon"> </a>
                         </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-8">
                     <div class="text-left">
-                        <img src="assets/img/payment/1.png" alt="img">
+                        <img src="{{asset('assets/img/payment/1.png')}}" alt="img">
                     </div>
                 </div>
             </div>
@@ -140,4 +140,6 @@
 <script src="{{asset('assets/js/plugins/plugins.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+@toastr_js
+@toastr_render
 </body>
