@@ -34,3 +34,16 @@ Route::group([
     Route::get('/{slug}', 'ProductDetailController@index')->name('get.product.detail');
 }
 );
+
+Route::group([
+    'namespace' => 'App\Http\Controllers',
+    'middleware' => 'auth',
+], function () {
+    Route::get('/account', 'MyAccountController@account')->name('get.account.index');
+    Route::post('/account/store', 'MyAccountController@storeInfo')->name('post.account.store');
+    Route::get('/account/password', 'MyAccountController@password')->name('get.password.index');
+    Route::post('/account/password/store', 'MyAccountController@changePassword')->name('post.password.store');
+
+}
+);
+

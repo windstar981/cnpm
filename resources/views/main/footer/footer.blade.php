@@ -140,4 +140,6 @@
 <script src="{{asset('assets/js/plugins/plugins.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+@toastr_js
+@toastr_render
 </body>

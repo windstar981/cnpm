@@ -8,6 +8,8 @@
     <meta name="description" content="" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Website bán mỹ phẩm</title>
+    @toastr_css
+
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}" />
 
@@ -18,7 +20,6 @@
     <!--***************************************************
        fontawesome,bootstrap,plugins and main style css
      ***************************************************-->
-
     <link rel="stylesheet" href="{{asset('assets/css/fontawesome.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/ionicons.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/simple-line-icons.css')}}" />
@@ -266,7 +267,7 @@
                     <nav class="navbar-top pb-2 pb-md-0 position-relative">
                         <ul class="d-flex justify-content-center justify-content-md-end align-items-center">
                             @auth
-                            <li><a href="myaccount.html">My account</a></li>
+                            <li><a href="{{route('get.account.index')}}">Tài khoản của tôi</a></li>
                                     <li><a href="{{route('customer.logout')}}">Log out</a></li>
                             @else
                                     <li><a href="{{route('login')}}">Login</a></li>
