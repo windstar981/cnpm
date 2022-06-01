@@ -17,7 +17,7 @@ class CreateRatesTable extends Migration
             $table->id();
             $table->integer('product_id');
             $table->integer('customer_id');
-            $table->integer('start');
+            $table->integer('star')->nullable();
             $table->string('content');
             $table->timestamps();
         });

@@ -47,7 +47,7 @@ class NewProductNotiCommand extends Command
         foreach ($users as $user) {
             $userSchema = Customer::where('email', $user->email)->first();
             Notification::send($userSchema, new NewProductNoti($products, $today));
-        $this->info('Đang gửi mail người dùng: '.$user->name);
+            $this->info('Đang gửi mail người dùng: '.$user->name);
         }
         $this->info('Gửi mail hoàn tất');
     }

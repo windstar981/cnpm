@@ -287,7 +287,7 @@
             <div class="row align-items-center">
                 <div class="col-sm-6 col-lg-2 order-first">
                     <div class="logo text-center text-sm-left mb-30 mb-sm-0">
-                        <a href="{{}}"><img src="{{asset('assets/img/logo/logo-dark.jpg')}}" alt="logo"></a>
+                        <a href="{{Request::root()}}"><img src="{{asset('assets/img/logo/logo-dark.jpg')}}" alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-5 col-xl-4">
