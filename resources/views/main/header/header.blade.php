@@ -220,6 +220,7 @@
             <span class="title">Cart</span>
             <button class="offcanvas-close">×</button>
         </div>
+
         <ul class="minicart-product-list">
             @auth
                 @isset($productCart)
