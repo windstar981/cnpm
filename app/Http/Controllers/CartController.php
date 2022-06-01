@@ -49,8 +49,6 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
         $pr_id = $request->pr_id;
         $customer_id = auth()->user()->id ?? null;
         if ($customer_id == null) {
