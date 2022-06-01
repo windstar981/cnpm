@@ -23,7 +23,6 @@ class CartController extends Controller
         $carts =  ProductService::getCart($customer_id);
         $productCart = ProductService::getProductCart($carts);
         $customer_id = auth()->user()->id ?? null;
-
         if ($customer_id != null) {
             return view('main.pages.cart', ['productCart' => $productCart, 'carts' => $carts]);
         } else {

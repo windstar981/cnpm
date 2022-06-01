@@ -56,7 +56,7 @@ class MyAccountController extends Controller
     public function changePassword(PasswordUpdateRequest $request)
     {
         $userId  = auth()->user()->id;
-        $password = $request->password;
+        $password = $request->password ?? '';
         $password = Hash::make($password);
         $data     = ['password' => $password];
         $this->accountService->UpdateById($userId, $data);

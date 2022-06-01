@@ -31,4 +31,8 @@ use Illuminate\Support\Facades\DB;
         $product = DB::table('products')->where('slug', $slug)->first();
         return $product;
     }
+    public function getSameProduct($category){
+        $products = DB::table('products')->where('category_id', $category)->get();
+        return $products;
+    }
 }
