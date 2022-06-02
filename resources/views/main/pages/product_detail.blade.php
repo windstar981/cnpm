@@ -48,8 +48,8 @@
                 <div class="product-sync-init mb-20">
                     @foreach($productImages as $image)
                     <div class="single-product">
-                        <div class="product-thumb">
-                            <img src="{{$urlRoot .'/storage/'.$image}}" alt="product-thumb">
+                        <div class="product-thumb d-flex justify-content-center">
+                            <img src="{{$urlRoot .'/storage/'.$image}}" alt="product-thumb" width="300px" height="250px" >
                         </div>
                     </div>
                     @endforeach
@@ -88,23 +88,24 @@
                         <div class="d-flex align-items-center mb-30">
                             <h6 class="product-price mr-20"><del class="del">{{$product->price}}VNĐ</del>
                                 <span class="onsale">{{$product->price -  $product->price_voucher }}</span></h6>
-                            <span class="badge position-static bg-dark rounded-0">Save 10%</span>
+                            <span class="badge position-static bg-dark rounded-0">Save {{round(($product->price_voucher/$product->price)*100)}}%</span>
                         </div>
+                        <p>Số lượng: {{$product->number}}</p>
                         <p>{{mb_substr($product->description, 0, 100)}}</p>
                     </div>
                     <div class="product-footer">
                         <div class="product-count style d-flex flex-column flex-sm-row mt-30 mb-20">
                             <div class="count d-flex">
-                                <input type="number" min="1" max="10" step="1" value="1">
+                                <input type="number" min="1" max="10" step="1" value="1" class="number-product">
                                 <div class="button-group">
                                     <button class="count-btn increment"><i class="fas fa-chevron-up"></i></button>
                                     <button class="count-btn decrement"><i class="fas fa-chevron-down"></i></button>
                                 </div>
                             </div>
                             <div>
-                                <button class="btn theme-btn--dark3 btn--xl mt-5 mt-sm-0 rounded-5">
+                                <button class="btn theme-btn--dark3 btn--xl mt-5 mt-sm-0 rounded-5  add-cart"  id_pr="{{$product->id}}">
                                     <span class="mr-2"><i class="ion-android-add"></i></span>
-                                    Add to cart
+                                    Thêm vào giỏ hàng
                                 </button>
                             </div>
                         </div>

@@ -24,8 +24,10 @@ Route::prefix('cart')->group(function () {
     Route::get('/', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
     Route::post('/addToCart',[App\Http\Controllers\CartController::class, 'store'])->name('addToCart');
     Route::delete('/deleteCart/{id}',[App\Http\Controllers\CartController::class, 'destroy'])->name('deleteFromCart');
-    Route::get('/updateCart/{id}',[App\Http\Controllers\CartController::class, 'update'])->name('updateCart');
+    Route::PATCH('/updateCart',[App\Http\Controllers\CartController::class, 'update'])->name('updateCart');
 });
+Route::get('/checkout',[App\Http\Controllers\CheckOutController::class, 'index'])->name('checkout');
+Route::POST('/saveOrder',[App\Http\Controllers\CheckOutController::class, 'store'])->name('saveOrder');
 
 Route::group([
     'namespace' => 'App\Http\Controllers\Product',

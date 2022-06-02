@@ -49,6 +49,7 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $pr_id = $request->pr_id;
+        $number = $request->number;
         $customer_id = auth()->user()->id ?? null;
         if ($customer_id == null) {
             return 'login';
@@ -57,13 +58,19 @@ class CartController extends Controller
         if ($product->number <= 0) {
             return 'Sản phẩm đã hết hàng';
         }
+        if($product->number < $number){
+            return 'Kho hàng không đủ số lượng bạn yêu cầu';
+        }
+        if($number<=0){
+            return 'Số lượng đặt phải lớn hơn 0';
+        }
         if (DB::table('carts')->where([['product_id', '=', $pr_id], ['customer_id', '=', $customer_id]])->count() != 0) {
             return 'Sản phẩm đã có trong giỏ hàng';
         } else {
             $cart = new Cart();
             $cart->customer_id = $customer_id;
             $cart->product_id = $pr_id;
-            $cart->quantity = 1;
+            $cart->quantity = $request->number;
             $cart->save();
             return 'Đã thêm hàng thành công';
         }
@@ -101,8 +108,7 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $number = $request->number;
-        return $number;
+
     }
 
     /**
