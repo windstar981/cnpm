@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRatesTable extends Migration
+class CreateBannersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->integer('customer_id');
-            $table->integer('star')->nullable();
-            $table->string('content');
+            $table->text('image');
+            $table->string('title_small')->nullable();
+            $table->string('title_medium')->nullable();
+            $table->string('title_large')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::dropIfExists('banners');
     }
 }

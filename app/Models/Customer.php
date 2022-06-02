@@ -14,5 +14,7 @@ class Customer extends Authenticatable
     use HasFactory;
     use Notifiable;
     protected $guarded = [];
-
+    public function rate(){
+        return $this->hasMany('App\Models\Rate','customer_id');
+    }
 }

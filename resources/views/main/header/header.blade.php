@@ -271,8 +271,8 @@
                             <li><a href="{{route('get.account.index')}}">Tài khoản của tôi</a></li>
                                     <li><a href="{{route('customer.logout')}}">Log out</a></li>
                             @else
-                                    <li><a href="{{route('login')}}">Login</a></li>
-                                    <li><a href="{{route('register')}}">Register</a></li>
+                                    <li><a href="{{route('login')}}">Đăng nhập</a></li>
+                                    <li><a href="{{route('register')}}">Đăng ký</a></li>
                             @endif
                         </ul>
                     </nav>
@@ -287,7 +287,7 @@
             <div class="row align-items-center">
                 <div class="col-sm-6 col-lg-2 order-first">
                     <div class="logo text-center text-sm-left mb-30 mb-sm-0">
-                        <a href="index.html"><img src="{{asset('assets/img/logo/logo-dark.jpg')}}" alt="logo"></a>
+                        <a href="{{Request::root()}}"><img src="{{asset('assets/img/logo/logo-dark.jpg')}}" alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-5 col-xl-4">

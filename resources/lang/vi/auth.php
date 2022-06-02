@@ -112,4 +112,7 @@ return [
     'description_name'                 => 'Hiển thị khi ứng tuyển việc làm',
     'description_dob'                  => 'Ngày sinh giúp chúng tôi sẽ đề xuất việc làm phù hợp với bạn',
     'description_address'              => 'Địa điểm giúp chúng tôi sẽ đề xuất việc làm gần bạn hiện tại',
+    'failed' => 'Tài khoản hoặc mật khẩu không chính xác',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
 ];

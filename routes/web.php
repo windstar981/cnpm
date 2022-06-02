@@ -32,6 +32,7 @@ Route::group([
     'prefix'    => '/product',
 ], function () {
     Route::get('/{slug}', 'ProductDetailController@index')->name('get.product.detail');
+    Route::post('/rate/store', 'ProductDetailController@storeRate')->name('post.rate.store');
 }
 );
 

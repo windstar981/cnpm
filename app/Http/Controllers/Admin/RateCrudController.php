@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CustommerRequest;
+use App\Http\Requests\RateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CustommerCrudController
+ * Class RateCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CustommerCrudController extends CrudController
+class RateCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class CustommerCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Customer::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/custommer');
-        CRUD::setEntityNameStrings('Khách hàng', 'Khách hàng');
+        CRUD::setModel(\App\Models\Rate::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/rate');
+        CRUD::setEntityNameStrings('Đánh giá', 'Đánh giá');
     }
 
     /**
@@ -39,11 +39,31 @@ class CustommerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->removeButton('create');
+        $this->crud->removeButton('update');
+
         CRUD::column('id');
-        CRUD::column('name')->label('Họ tên');
-        CRUD::column('email');
-        CRUD::column('telephone')->label('Số điện thoại');
-        CRUD::column('address')->label('Địa chỉ');
+        $this->crud->addColumn([
+            // any type of relationship
+            'name'         => 'customer_id', // name of relationship method in the model
+            'type'         => 'relationship',
+            'label'        => 'Tên khách hàng', // Table column heading
+            // OPTIONAL
+             'entity'    => 'customer', // the method that defines the relationship in your Model
+             'attribute' => 'name', // foreign key attribute that is shown to user
+             'model'     => \App\Models\Customer::class, // foreign key model
+        ]);
+        $this->crud->addColumn([
+            // any type of relationship
+            'name'         => 'product_id', // name of relationship method in the model
+            'type'         => 'relationship',
+            'label'        => 'Tên sản phẩm', // Table column heading
+            // OPTIONAL
+            'entity'    => 'product', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'model'     => \App\Models\Product::class, // foreign key model
+        ]);
+        CRUD::column('content')->label('Nội dung');
         CRUD::column('created_at')->label('Ngày tạo');
 
         /**
@@ -61,14 +81,13 @@ class CustommerCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CustommerRequest::class);
+        CRUD::setValidation(RateRequest::class);
+
         CRUD::field('id');
-        CRUD::field('name')->label('Họ tên');
-        CRUD::field('email');
-        CRUD::field('telephone')->label('Số điện thoại');
-        CRUD::field('address')->label('Địa chỉ');
-        CRUD::field('created_at')->label('Ngày tạo');
-        
+        CRUD::field('customer_id');
+        CRUD::field('content');
+        CRUD::field('product_id');
+        CRUD::field('created_at');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -85,12 +104,6 @@ class CustommerCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('id');
-        CRUD::field('name')->label('Họ tên');
-        CRUD::field('email');
-        CRUD::field('telephone')->label('Số điện thoại');
-        CRUD::field('address')->label('Địa chỉ');
-        CRUD::field('created_at')->label('Ngày tạo');
         $this->setupCreateOperation();
     }
 }

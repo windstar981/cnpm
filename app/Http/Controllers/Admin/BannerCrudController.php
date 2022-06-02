@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\BannerRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CategoryCrudController
+ * Class BannerCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CategoryCrudController extends CrudController
+class BannerCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class CategoryCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Category::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/category');
-        CRUD::setEntityNameStrings('Danh mục', 'Danh mục');
+        CRUD::setModel(\App\Models\Banner::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/banner');
+        CRUD::setEntityNameStrings('banner', 'banners');
     }
 
     /**
@@ -39,37 +39,18 @@ class CategoryCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->addFilters();
-        $this->crud->addColumn([
-            'name'      => 'id',
-            'label'     => 'Mã danh mục',
-            'type'      => 'text',
-        ]);
-        $this->crud->addColumn([
-            'name'      => 'name',
-            'label'     => 'Tên danh mục',
-            'type'      => 'text',
-        ]);
+        CRUD::column('id');
         $this->crud->addColumn([
             'name'    => 'image',
             'label'   => 'Hình ảnh',
             'type'    => 'image ',
             'disk' => 'public', // filesystem disk if you're using S3 or something custom
             'height' => '60px',
-            'width'  => '60px',
+            'width'  => '100px',
         ]);
-        $this->crud->addColumn([
-            'name'      => 'created_at',
-            'label'     => 'Ngày tạo',
-            'type'      => 'date',
-            'format' => 'd/m/Y'
-        ]);
-        $this->crud->addColumn([
-            'name'      => 'updated_at',
-            'label'     => 'Cập nhật lần cuối',
-            'type'      => 'date',
-            'format' => 'd/m/Y'
-        ]);
+        CRUD::column('title_small')->label('Tiêu đề nhỏ');
+        CRUD::column('title_medium')->label('Tiêu đề vừa');
+        CRUD::column('title_large')->label('Tiêu đề to');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -86,13 +67,8 @@ class CategoryCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CategoryRequest::class);
+        CRUD::setValidation(BannerRequest::class);
 
-        $this->crud->addField([
-            'name'      => 'name',
-            'label'     => 'Tên sản phẩm',
-            'type'      => 'text',
-        ]);
         $this->crud->addField([
             'label' => "Hình ảnh",
             'name' => "image",
@@ -102,6 +78,10 @@ class CategoryCrudController extends CrudController
             // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
              'prefix'    => 'storage/' // in case your db value is only the file name (no path), you can use this to prepend your path to the image src (in HTML), before it's shown to the user;
         ]);
+        CRUD::field('title_small')->label('Tiêu đề nhỏ');
+        CRUD::field('title_medium')->label('Tiêu đề vừa');
+        CRUD::field('title_large')->label('Tiêu đề to');
+
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
@@ -119,25 +99,4 @@ class CategoryCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
-    protected function setupShowOperation()
-    {
-        $this->setupListOperation();
-    }
-    public function addFilters()
-    {
-        $this->crud->addFilter([
-            'type'  => 'text',
-            'name'  => 'id',
-            'label' => 'ID'
-        ]);
-        $this->crud->addFilter([
-            'type'  => 'text',
-            'name'  => 'name',
-            'label' => 'Tên danh mục',
-        ],
-            false,
-            function($value) { // if the filter is active
-                $this->crud->addClause('where', 'description', 'LIKE', "%$value%");
-            });
-        }
 }

@@ -36,7 +36,6 @@ class MyAccountController extends Controller
           "address" => $user->address ?? '',
         ];
         return view('main.pages.account.my-account')->with($viewData);
-
     }
 
     public function storeInfo(AccountRequest $request){

@@ -11,5 +11,11 @@ class Rate extends Model
     use CrudTrait;
     use HasFactory;
     protected $guarded = [];
+    public function product(){
+        return $this->belongsTo('App\Models\Product');
+    }
+    public function customer(){
+        return $this->belongsTo('App\Models\Customer');
+    }
 
 }
