@@ -113,4 +113,35 @@ $(document).ready(function() {
             },
         });
     });
+    $('.icon-heart').click(function(){
+        let pr_id = $(this).attr('pr_id');
+        console.log(pr_id);
+        $.ajax({
+            url: domain+"addWishList",
+            type: "post",
+            data: {
+                'pr_id': pr_id,
+            },
+            success: function(data) {
+                if(data=='login')
+                {
+                    window.location.href = domain+'login';
+                }
+                alert(data);
+            },
+        });
+    })
+    $('.remove-wish-list').click(function(){
+        let pr_id = $(this).attr('pr_id');
+        console.log(pr_id);
+        $.ajax({
+            url: domain+"deleteWishList/"+pr_id,
+            type: "delete",
+            dataType:'json',
+            success: function(data) {
+                console.log(data);
+            },
+        });
+        $(this).closest('.list-wish-list').remove();
+    })
 });

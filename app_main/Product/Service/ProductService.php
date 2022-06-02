@@ -34,6 +34,21 @@ class ProductService
         return $productCart;
     }
 
+    public static function getWishList($id)
+    {
+        $temp = DB::table('wish_lists')->where('customer_id', $id)->get();
+        $all = DB::table('products')->get();
+        $arr = [];
+        foreach ($temp as $pr) {
+            foreach ($all as $product) {
+                if ($product->id == $pr->product_id) {
+                    array_push($arr, $product);
+                }
+            }
+        }
+        return $arr;
+    }
+
     public function findBySlug($slug)
     {
         $product = DB::table('products')->where('slug', $slug)->first();

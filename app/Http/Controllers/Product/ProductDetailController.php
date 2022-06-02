@@ -7,6 +7,7 @@ use AppMain\Product\Service\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+
 class ProductDetailController extends Controller
 {
     protected $productSerivce;
@@ -26,6 +27,7 @@ class ProductDetailController extends Controller
         }
         $carts       = ProductService::getCart($customer_id);
         $productCart = ProductService::getProductCart($carts);
+        $wishList = ProductService::getWishList($customer_id);
         $sameProduct = $this->productSerivce->getSameProduct($product->category_id);
         $rates       = $this->productSerivce->getRates($product->id);
         $viewData    = [
@@ -34,6 +36,7 @@ class ProductDetailController extends Controller
             "productCart" => $productCart,
             "sameProduct" => $sameProduct,
             "rates"       => $rates,
+            "wishlist"=>$wishList,
         ];
 
         return view('main.pages.product_detail')->with($viewData);

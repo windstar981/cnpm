@@ -190,16 +190,15 @@
         </div>
         <ul class="minicart-product-list">
             @auth
-                @isset($productCart)
+                @isset($wishlist)
 
-                @foreach($productCart as $key=> $product)
-                <li>
+                @foreach($wishlist as $key=> $product)
+                <li class="list-wish-list">
                     <a href="single-product.html" class="image"><img src="{{asset('http://127.0.0.1:8000/storage/'.$product->thumbnail)}}"
                                                                      alt="Cart product Image"></a>
-                    <div class="content">
-                        <a href="single-product.html" class="title">{{$product->name}}}</a>
-                        <span class="quantity-price">{{$carts[$key]->quantity}} x <span class="amount">{{$product->price-$product->price_voucher}}</span></span>
-                        <a href="#" class="remove">×</a>
+                    <div class="content mt-4" >
+                        <a href="single-product.html" class="title">{{$product->name}}</a>
+                        <a href="#" class="remove remove-wish-list" pr_id ="{{$product->id}}">×</a>
                     </div>
                 </li>
                 @endforeach
@@ -207,8 +206,8 @@
             @endif
 
         </ul>
-        <a href="wishlist.html" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mt-30">view
-            wishlist</a>
+{{--        <a href="wishlist.html" class="btn theme--btn-default btn--lg d-block d-sm-inline-block rounded-5 mt-30">view--}}
+{{--            wishlist</a>--}}
     </div>
 </div>
 <!-- OffCanvas Wishlist End -->
@@ -307,19 +306,12 @@
                         <!-- static-media end -->
                         <div class="cart-block-links theme1">
                             <ul class="d-flex">
-                                <li>
-                                    <a href="compare.html">
-                                        <span class="position-relative">
-                                            <i class="icon-shuffle"></i>
-                                            <span class="badge cbdg1">1</span>
-                                        </span>
-                                    </a>
-                                </li>
+
                                 <li>
                                     <a class="offcanvas-toggle" href="#offcanvas-wishlist">
                                         <span class="position-relative">
                                             <i class="icon-heart"></i>
-                                            <span class="badge cbdg1">3</span>
+                                            <span class="badge cbdg1">{{count($wishlist)}}</span>
                                         </span>
                                     </a>
                                 </li>

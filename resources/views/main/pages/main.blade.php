@@ -81,6 +81,7 @@ $urlRoot   = \Request::root();
             </div>
             <div class="col-12">
                 <div class="product-slider-init slick-nav">
+                    @for($i=1 ; $i<3 ; $i++)
                     @foreach($category->product()->get() as $product)
                     <div class="slider-item">
                         <div class="card product-card">
@@ -94,23 +95,13 @@ $urlRoot   = \Request::root();
                                         <!-- product links -->
                                         <ul class="product-links d-flex justify-content-center">
                                             <li>
-                                                <a href="wishlist.html">
-                                                    <span data-toggle="tooltip" data-placement="bottom"
-                                                          title="add to wishlist" class="icon-heart"> </span>
-                                                </a>
+                                                <span>
+                                                    <span data-toggle="tooltip" data-placement="bottom" style="cursor:pointer;"
+                                                          title="add to wishlist" class="icon-heart" pr_id ="{{$product->id}}"> </span>
+                                                </span>
                                             </li>
-                                            <li>
-                                                <a href="#" data-toggle="modal" data-target="#compare">
-                                                    <span data-toggle="tooltip" data-placement="bottom"
-                                                          title="Add to compare" class="icon-shuffle"></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" data-toggle="modal" data-target="#quick-view">
-                                                    <span data-toggle="tooltip" data-placement="bottom"
-                                                          title="Quick view" class="icon-magnifier"></span>
-                                                </a>
-                                            </li>
+
+
                                         </ul>
                                         <!-- product links end-->
                                     </div>
@@ -136,7 +127,7 @@ $urlRoot   = \Request::root();
                     </div>
                     @endforeach
                     <!-- slider-item end -->
-
+                    @endfor
                 </div>
             </div>
         </div>
@@ -157,78 +148,23 @@ $urlRoot   = \Request::root();
             </div>
             <div class="col-12">
                 <div class="popular-slider-init dots-style">
+                    @foreach($categories as $cate)
                     <div class="slider-item">
                         <div class="card popular-card zoom-in">
                             <div class="card-body">
                                 <a href="#" class="thumb-naile d-block overflow-hidden"> <img class="d-block mx-auto"
-                                                                                              src="assets/img/popular/12.jpg" alt="img"></a>
+                                                                                              src="{{$urlRoot.'/storage/'.($cate->image)}}" alt="img"></a>
                                 <h3 class="popular-title">
-                                    <a href="#"> Skin Care <span>(17)</span></a>
+                                    <a href="#"> {{$cate->name}}
+{{--                                        <span>(17)</span>--}}
+                                    </a>
                                 </h3>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <!-- slider-item end -->
-                    <div class="slider-item">
-                        <div class="card popular-card zoom-in">
-                            <div class="card-body">
-                                <a href="#" class="thumb-naile d-block overflow-hidden"> <img class="d-block mx-auto"
-                                                                                              src="assets/img/popular/13.jpg" alt="img"></a>
-                                <h3 class="popular-title">
-                                    <a href="#"> Health Care <span>(17)</span></a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- slider-item end -->
-                    <div class="slider-item">
-                        <div class="card popular-card zoom-in">
-                            <div class="card-body">
-                                <a href="#" class="thumb-naile d-block overflow-hidden"> <img class="d-block mx-auto"
-                                                                                              src="assets/img/popular/14.jpg" alt="img"></a>
-                                <h3 class="popular-title">
-                                    <a href="#"> Makeup <span>(18)</span></a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- slider-item end -->
-                    <div class="slider-item">
-                        <div class="card popular-card zoom-in">
-                            <div class="card-body">
-                                <a href="#" class="thumb-naile d-block overflow-hidden"> <img class="d-block mx-auto"
-                                                                                              src="assets/img/popular/15.jpg" alt="img"></a>
-                                <h3 class="popular-title">
-                                    <a href="#"> Nail Art & Tools <span>(19)</span></a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- slider-item end -->
-                    <div class="slider-item">
-                        <div class="card popular-card zoom-in">
-                            <div class="card-body">
-                                <a href="#" class="thumb-naile d-block overflow-hidden"> <img class="d-block mx-auto"
-                                                                                              src="assets/img/popular/16.jpg" alt="img"></a>
-                                <h3 class="popular-title">
-                                    <a href="#"> Chinese Medicine <span>(20)</span></a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- slider-item end -->
-                    <div class="slider-item">
-                        <div class="card popular-card zoom-in">
-                            <div class="card-body">
-                                <a href="#" class="thumb-naile  d-block overflow-hidden"> <img class="d-block mx-auto"
-                                                                                               src="assets/img/popular/12.jpg" alt="img"></a>
-                                <h3 class="popular-title">
-                                    <a href="#"> Skin Care <span>(21)</span></a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- slider-item end -->
+
                 </div>
             </div>
         </div>
@@ -304,443 +240,443 @@ $urlRoot   = \Request::root();
 </div>
 <!-- brand slider end -->
 <!-- common banner  start -->
-<div class="common-banner bg-white pb-50">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-30">
-                <div class="banner-thumb common-bthumb1">
-                    <a href="shop-grid-4-column.html" class="zoom-in d-block overflow-hidden">
-                        <img src="assets/img/banner/22.jpg" alt="banner-thumb-naile">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-30">
-                <div class="banner-thumb common-bthumb1">
-                    <a href="shop-grid-4-column.html" class="zoom-in d-block overflow-hidden">
-                        <img src="assets/img/banner/23.jpg" alt="banner-thumb-naile">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{{--<div class="common-banner bg-white pb-50">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-6 mb-30">--}}
+{{--                <div class="banner-thumb common-bthumb1">--}}
+{{--                    <a href="shop-grid-4-column.html" class="zoom-in d-block overflow-hidden">--}}
+{{--                        <img src="assets/img/banner/22.jpg" alt="banner-thumb-naile">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-lg-6 mb-30">--}}
+{{--                <div class="banner-thumb common-bthumb1">--}}
+{{--                    <a href="shop-grid-4-column.html" class="zoom-in d-block overflow-hidden">--}}
+{{--                        <img src="assets/img/banner/23.jpg" alt="banner-thumb-naile">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 <!-- common banner  end -->
 <!-- featured  slider start-->
-<section class="featured-slider theme3 pb-80">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title mb-30">
-                    <h2 class="title text-dark text-capitalize">Featured products </h2>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="featured-init slick-nav">
-                    <div class="slider-item">
-                        <div class="product-list mb-30">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/1.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">New Luxury
-                                                        Men's Slim Fit Shirt Short Sleeve...</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                        <div class="product-list">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/2.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">Juicy Couture Solid
-                                                        Sleeve Puffer Jacket</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                    </div>
-                    <!-- slider-item End -->
-                    <div class="slider-item">
-                        <div class="product-list mb-30">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/3.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">New Balance Fresh
-                                                        Foam LAZR v1 Sport</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price"><del class="del">$23.90</del>
-                                                        <span class="onsale">$21.51</span></h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                        <div class="product-list">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/4.jpg"
-                                                     alt="thumbnail">
-                                                <img class="second-img" src="assets/img/new-products/4.1.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">Hooded Wind and
-                                                        Water Resistant Shell</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                    </div>
-                    <!-- slider-item End -->
-                    <div class="slider-item">
-                        <div class="product-list mb-30">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/5.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">New Balance Fresh
-                                                        Foam Kaymin</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                        <div class="product-list">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/6.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">Juicy Couture Tricot
-                                                        Logo Stripe Jacket</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                    </div>
-                    <!-- slider-item End -->
-                    <div class="slider-item">
-                        <div class="product-list mb-30">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/1.1.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">Juicy Couture Juicy
-                                                        Quilted Terry Track Jacket</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                        <div class="product-list">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/4.1.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">Couture Juicy
-                                                        Quilted Terry Track Jacket</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                    </div>
-                    <!-- slider-item End -->
-                    <div class="slider-item">
-                        <div class="product-list mb-30">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/1.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">Fila Locker Room
-                                                        Varsity Jacket</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                        <div class="product-list">
-                            <div class="card product-card no-shadow">
-                                <div class="card-body p-0">
-                                    <div class="media">
-                                        <div class="product-thumbnail">
-                                            <a href="single-product.html">
-                                                <img class="first-img" src="assets/img/new-products/4.jpg"
-                                                     alt="thumbnail">
-                                                <img class="second-img" src="assets/img/new-products/4.1.jpg"
-                                                     alt="thumbnail">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="product-desc">
-                                                <h3 class="title"><a href="shop-grid-4-column.html">Calvin Klein Jeans
-                                                        Reflective Logo Full Zip</a></h3>
-                                                <div class="star-rating">
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star"></span>
-                                                    <span class="ion-ios-star de-selected"></span>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <h6 class="product-price">$11.90</h6>
-                                                    <button class="pro-btn" data-toggle="modal"
-                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- "product-list End -->
-                    </div>
-                    <!-- slider-item End -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section class="featured-slider theme3 pb-80">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-12">--}}
+{{--                <div class="section-title mb-30">--}}
+{{--                    <h2 class="title text-dark text-capitalize">Featured products </h2>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-12">--}}
+{{--                <div class="featured-init slick-nav">--}}
+{{--                    <div class="slider-item">--}}
+{{--                        <div class="product-list mb-30">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/1.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">New Luxury--}}
+{{--                                                        Men's Slim Fit Shirt Short Sleeve...</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                        <div class="product-list">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/2.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">Juicy Couture Solid--}}
+{{--                                                        Sleeve Puffer Jacket</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                    </div>--}}
+{{--                    <!-- slider-item End -->--}}
+{{--                    <div class="slider-item">--}}
+{{--                        <div class="product-list mb-30">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/3.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">New Balance Fresh--}}
+{{--                                                        Foam LAZR v1 Sport</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price"><del class="del">$23.90</del>--}}
+{{--                                                        <span class="onsale">$21.51</span></h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                        <div class="product-list">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/4.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                                <img class="second-img" src="assets/img/new-products/4.1.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">Hooded Wind and--}}
+{{--                                                        Water Resistant Shell</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                    </div>--}}
+{{--                    <!-- slider-item End -->--}}
+{{--                    <div class="slider-item">--}}
+{{--                        <div class="product-list mb-30">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/5.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">New Balance Fresh--}}
+{{--                                                        Foam Kaymin</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                        <div class="product-list">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/6.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">Juicy Couture Tricot--}}
+{{--                                                        Logo Stripe Jacket</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                    </div>--}}
+{{--                    <!-- slider-item End -->--}}
+{{--                    <div class="slider-item">--}}
+{{--                        <div class="product-list mb-30">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/1.1.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">Juicy Couture Juicy--}}
+{{--                                                        Quilted Terry Track Jacket</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                        <div class="product-list">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/4.1.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">Couture Juicy--}}
+{{--                                                        Quilted Terry Track Jacket</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                    </div>--}}
+{{--                    <!-- slider-item End -->--}}
+{{--                    <div class="slider-item">--}}
+{{--                        <div class="product-list mb-30">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/1.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">Fila Locker Room--}}
+{{--                                                        Varsity Jacket</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                        <div class="product-list">--}}
+{{--                            <div class="card product-card no-shadow">--}}
+{{--                                <div class="card-body p-0">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="product-thumbnail">--}}
+{{--                                            <a href="single-product.html">--}}
+{{--                                                <img class="first-img" src="assets/img/new-products/4.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                                <img class="second-img" src="assets/img/new-products/4.1.jpg"--}}
+{{--                                                     alt="thumbnail">--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body">--}}
+{{--                                            <div class="product-desc">--}}
+{{--                                                <h3 class="title"><a href="shop-grid-4-column.html">Calvin Klein Jeans--}}
+{{--                                                        Reflective Logo Full Zip</a></h3>--}}
+{{--                                                <div class="star-rating">--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star"></span>--}}
+{{--                                                    <span class="ion-ios-star de-selected"></span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                                                    <h6 class="product-price">$11.90</h6>--}}
+{{--                                                    <button class="pro-btn" data-toggle="modal"--}}
+{{--                                                            data-target="#add-to-cart"><i class="icon-basket"></i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- "product-list End -->--}}
+{{--                    </div>--}}
+{{--                    <!-- slider-item End -->--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <!-- featured  slider end-->
 <!-- staic media start -->
-<section class="static-media-section theme-bg3 py-45">
-    <div class="container">
-        <div class="static-media-wrap p-0">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/2.png"
-                             alt="icon">
-                        <div class="media-body">
-                            <h4 class="title text-capitalize text-white">Free Shipping</h4>
-                            <p class="text text-white">On all orders over $75.00</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/3.png"
-                             alt="icon">
-                        <div class="media-body">
-                            <h4 class="title text-capitalize text-white">Free Returns</h4>
-                            <p class="text text-white">Returns are free within 9 days</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/5.png"
-                             alt="icon">
-                        <div class="media-body">
-                            <h4 class="title text-capitalize text-white">Support 24/7</h4>
-                            <p class="text text-white">Contact us 24 hours a day</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 py-3">
-                    <div class="d-flex static-media2 flex-column flex-sm-row">
-                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/4.png"
-                             alt="icon">
-                        <div class="media-body">
-                            <h4 class="title text-capitalize text-white">100% Payment Secure</h4>
-                            <p class="text text-white">Your payment are safe with us.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section class="static-media-section theme-bg3 py-45">--}}
+{{--    <div class="container">--}}
+{{--        <div class="static-media-wrap p-0">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-lg-3 col-sm-6 py-3">--}}
+{{--                    <div class="d-flex static-media2 flex-column flex-sm-row">--}}
+{{--                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/2.png"--}}
+{{--                             alt="icon">--}}
+{{--                        <div class="media-body">--}}
+{{--                            <h4 class="title text-capitalize text-white">Free Shipping</h4>--}}
+{{--                            <p class="text text-white">On all orders over $75.00</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-3 col-sm-6 py-3">--}}
+{{--                    <div class="d-flex static-media2 flex-column flex-sm-row">--}}
+{{--                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/3.png"--}}
+{{--                             alt="icon">--}}
+{{--                        <div class="media-body">--}}
+{{--                            <h4 class="title text-capitalize text-white">Free Returns</h4>--}}
+{{--                            <p class="text text-white">Returns are free within 9 days</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-3 col-sm-6 py-3">--}}
+{{--                    <div class="d-flex static-media2 flex-column flex-sm-row">--}}
+{{--                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/5.png"--}}
+{{--                             alt="icon">--}}
+{{--                        <div class="media-body">--}}
+{{--                            <h4 class="title text-capitalize text-white">Support 24/7</h4>--}}
+{{--                            <p class="text text-white">Contact us 24 hours a day</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-3 col-sm-6 py-3">--}}
+{{--                    <div class="d-flex static-media2 flex-column flex-sm-row">--}}
+{{--                        <img class="align-self-center mb-2 mb-sm-0 mr-auto  mr-sm-3" src="assets/img/icon/4.png"--}}
+{{--                             alt="icon">--}}
+{{--                        <div class="media-body">--}}
+{{--                            <h4 class="title text-capitalize text-white">100% Payment Secure</h4>--}}
+{{--                            <p class="text text-white">Your payment are safe with us.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 <!-- staic media end -->
 <!-- brand slider start -->
 <!-- footer strat -->

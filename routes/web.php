@@ -15,6 +15,8 @@ use App\Http\Controllers\HomeController;
 |
 */
 Route::get('/', [HomeController::class, 'index']);
+Route::post('/addWishList',[App\Http\Controllers\WishlistController::class, 'store'])->name('addWishList');
+Route::delete('/deleteWishList/{id}',[App\Http\Controllers\WishlistController::class, 'destroy'])->name('deleteFromWishList');
 
 Auth::routes();
 
@@ -28,6 +30,7 @@ Route::prefix('cart')->group(function () {
 });
 Route::get('/checkout',[App\Http\Controllers\CheckOutController::class, 'index'])->name('checkout');
 Route::POST('/saveOrder',[App\Http\Controllers\CheckOutController::class, 'store'])->name('saveOrder');
+
 
 Route::group([
     'namespace' => 'App\Http\Controllers\Product',
@@ -48,5 +51,6 @@ Route::group([
     Route::post('/account/password/store', 'MyAccountController@changePassword')->name('post.password.store');
 
 }
+
 );
 

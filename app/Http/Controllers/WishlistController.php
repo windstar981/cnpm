@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
 use Illuminate\Http\Request;
-use AppMain\Product\Service\ProductService;
-use Illuminate\Support\Facades\Auth;
+use App\Models\WishList;
 use Illuminate\Support\Facades\DB;
-use App\Models\Category;
 
-class HomeController extends Controller
+
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $customer_id = auth()->user()->id ?? null;
-        $categories = Category::all();
-        $banners = Banner::all();
-        $carts = ProductService::getCart($customer_id);
-        $productCart = ProductService::getProductCart($carts);
-        $wishList = ProductService::getWishList($customer_id);
-
-        return view('main.pages.main', ['categories' => $categories, 'productCart' => $productCart,
-            'carts'=>$carts, 'banners'=>$banners, 'wishlist'=>$wishList]);
+        //
     }
 
     /**
@@ -37,6 +27,7 @@ class HomeController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -48,6 +39,19 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         //
+        $customer_id = auth()->user()->id ?? null;
+        if ($customer_id == null) {
+            return 'login';
+        }
+
+        if(DB::table('wish_lists')->where('product_id',$request->pr_id)->count()){
+            return 'Sản phẩm đã có trong danh sách yêu thích';
+        }
+        $wishList = new WishList();
+        $wishList->product_id = $request->pr_id;
+        $wishList->customer_id = $customer_id;
+        $wishList->save();
+        return 'Đã thêm vào danh sách yêu thích thành công';
     }
 
     /**
@@ -93,5 +97,6 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+        WishList::destroy($id);
     }
 }
