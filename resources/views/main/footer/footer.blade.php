@@ -140,6 +140,8 @@
 <script src="{{asset('assets/js/plugins/plugins.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+@include('plugin-interest::includejs')
 @toastr_js
 @toastr_render
 </body>

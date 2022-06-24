@@ -13,7 +13,6 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
 class MyAccountController extends Controller
 {
     /**
@@ -28,12 +27,16 @@ class MyAccountController extends Controller
 
     public function account()
     {
+        $customer_id = auth()->user()->id ?? null;
         $user = auth()->user();
+        $wishList = ProductService::getWishList($customer_id);
+
         $viewData = [
           "email" => $user->email ?? '',
           "name" => $user->name ?? '',
           "telephone" => $user->telephone ?? '',
           "address" => $user->address ?? '',
+            "wishlist"=>$wishList,
         ];
         return view('main.pages.account.my-account')->with($viewData);
     }

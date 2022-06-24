@@ -4,6 +4,9 @@ $urlRoot   = \Request::root();
 
 <!-- header end -->
 @include('main.header.header')
+<section>
+    @include('plugin-interest::plugininterest')
+</section>
 
 <!-- main slider start -->
 <section class="bg-light position-relative">
@@ -108,6 +111,9 @@ $urlRoot   = \Request::root();
                                     <div class="media-body">
                                         <div class="product-desc">
                                             <h3 class="title"><a href="/product/{{$product->slug}}">{{$product->name}}</a></h3>
+                                            @if($product->number<=0)
+                                                <span>Sản phẩm đã hết hàng</span>
+                                            @endif
                                             <div class="star-rating">
                                                 <span class="ion-ios-star"></span>
                                                 <span class="ion-ios-star"></span>

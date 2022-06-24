@@ -1,0 +1,30 @@
+{
+    "name": "tool/plugininterest",
+    "description": "tool tinh lai xuat",
+    "autoload": {
+        "psr-4": {
+            "Tool\\PluginInterest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "windstar981",
+            "email": "hackviet98@gmail.com"
+        }
+    ],
+    "require": {},
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tool\\PluginInterest\\InterestProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

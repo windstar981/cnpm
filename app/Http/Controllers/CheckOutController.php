@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use AppMain\Product\Service\ProductService;
 
 class CheckOutController extends Controller
 {
@@ -22,13 +23,14 @@ class CheckOutController extends Controller
         if ($customer_id == null) {
             return redirect()->route('login');
         }
+        $wishList = ProductService::getWishList($customer_id);
         $productCarts = DB::table('carts')->where('customer_id', $customer_id)->get();
         $customer = DB::table('customers')->where('id', $customer_id)->first();
         $arrPr = [];
         foreach ($productCarts as $productCart){
             array_push($arrPr, DB::table('products')->where('id',$productCart->product_id)->first());
         }
-        return view('main.pages.checkout', ['carts' => $productCarts, 'customer'=>$customer,'productCarts'=>$arrPr] );
+        return view('main.pages.checkout', ['carts' => $productCarts, 'customer'=>$customer,'productCarts'=>$arrPr, 'wishlist'=>$wishList] );
     }
 
     /**
