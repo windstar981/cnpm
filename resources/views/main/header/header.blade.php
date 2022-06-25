@@ -10,6 +10,13 @@
     <title>Website bán mỹ phẩm</title>
     @toastr_css
 
+
+
+
+
+
+
+
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}" />
 
