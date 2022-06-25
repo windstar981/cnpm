@@ -5,7 +5,6 @@ $urlRoot   = \Request::root();
 <!-- header end -->
 @include('main.header.header')
 <section>
-    @include('plugin-interest::plugininterest')
 </section>
 
 <!-- main slider start -->

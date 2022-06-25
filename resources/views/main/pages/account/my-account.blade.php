@@ -33,27 +33,17 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="profile.php" class="nav-link active" aria-current="page">
+                            <a href="{{route('get.account.index')}}" class="nav-link active" aria-current="page">
                                 Thông tin cá nhân
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="change-password.php" class="nav-link " aria-current="page">
+                            <a href="{{route('get.password.index')}}" class="nav-link  " aria-current="page">
                                 Đổi mật khẩu
                             </a>
                         </li>
                         <li>
-                            <a href="customer-orders.php" class="nav-link  link-dark">
-                                Danh sách đơn hàng
-                            </a>
-                        </li>
-                        <li>
-                            <a href="book-request.php" class="nav-link  link-dark">
-                                Yêu cầu sách
-                            </a>
-                        </li>
-                        <li>
-                            <a href="logout.php" class="nav-link link-dark">
+                            <a href="{{route('customer.logout')}}" class="nav-link link-dark">
                                 Đăng xuất
                             </a>
                         </li>

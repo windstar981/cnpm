@@ -42,7 +42,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
-
+    public function orderDetail()
+    {
+        return $this->belongsTo('App\Models\OrderDetail');
+    }
     public function rate(){
         return $this->hasMany('App\Models\Rate', 'product_id');
     }

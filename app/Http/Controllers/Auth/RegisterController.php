@@ -63,6 +63,7 @@ class RegisterController extends Controller
                 'password.confirmed' => 'Mật khẩu không khớp',
             ]
         );
+
     }
 
     /**

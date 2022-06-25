@@ -12,4 +12,9 @@ class OrderDetail extends Model
     use HasFactory;
     protected $guarded = [];
 
+
+    public function product(){
+        $this->hasMany('App\Models\Product');
+    }
+
 }
